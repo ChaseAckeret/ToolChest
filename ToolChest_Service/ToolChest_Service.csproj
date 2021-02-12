@@ -54,11 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="OwnerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptService.cs" />
+    <Compile Include="RentalService.cs" />
+    <Compile Include="TimeService.cs" />
+    <Compile Include="ToolService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToolChest_Data\ToolChest_Data.csproj">
+      <Project>{81c5cbd6-b8fc-428e-9677-1a74d6a178af}</Project>
+      <Name>ToolChest_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolChest_Models\ToolChest_Models.csproj">
+      <Project>{9cfcdbc5-f16e-49c2-a850-b7e68ee01af0}</Project>
+      <Name>ToolChest_Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
