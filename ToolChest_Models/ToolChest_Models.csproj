@@ -54,7 +54,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerCreate.cs" />
+    <Compile Include="CustomerListItem.cs" />
+    <Compile Include="OwnerCreate.cs" />
+    <Compile Include="OwnerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptCreate.cs" />
+    <Compile Include="ReceiptListItem.cs" />
+    <Compile Include="RentalCreate.cs" />
+    <Compile Include="RentalListItem.cs" />
+    <Compile Include="TimeCreate.cs" />
+    <Compile Include="TimeListItem.cs" />
+    <Compile Include="ToolCreate.cs" />
+    <Compile Include="ToolListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
