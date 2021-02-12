@@ -8,5 +8,6 @@ namespace ToolChest_Models
 {
     public class ReceiptEdit
     {
+        //Receipt
     }
 }
