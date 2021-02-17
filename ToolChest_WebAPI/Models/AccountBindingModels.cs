@@ -52,7 +52,7 @@ namespace ToolChest_WebAPI.Models
         [Required]
         public string FName { get; set; }
         [Required]
-        public string LLname { get; set; }
+        public string LName { get; set; }
         [Required]
         public string StreetAddress { get; set; }
         [Required]
