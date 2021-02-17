@@ -329,7 +329,7 @@ namespace ToolChest_WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FName = model.FName, LName=model.LLname, StreetAddress = model.StreetAddress, City = model.City, State = model.State };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
