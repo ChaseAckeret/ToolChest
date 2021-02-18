@@ -12,6 +12,7 @@ namespace ToolChest_Data
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -27,14 +28,16 @@ namespace ToolChest_Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        /*Change "Note" to correct term
-          public DbSet<Note> Notes { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        /*
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Tool> Tools { get; set; }
         */
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -54,7 +57,7 @@ namespace ToolChest_Data
     {
         public IdentityUserLoginConfiguration()
         {
-            HasKey(iul=>iul.UserId)
+            HasKey(iul => iul.UserId);
         }
     }
 
