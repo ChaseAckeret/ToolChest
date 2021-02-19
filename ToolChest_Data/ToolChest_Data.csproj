@@ -92,6 +92,8 @@
     <Compile Include="Rental.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="Tool.cs" />
+    <Compile Include="ToolCatalogItem.cs" />
+    <Compile Include="ToolRating.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

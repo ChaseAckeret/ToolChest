@@ -33,9 +33,11 @@ namespace ToolChest_Data
             return new ApplicationDbContext();
         }
 
-        /*Change "Note" to correct term
-          public DbSet<Note> Notes { get; set; }
-        */
+        //Add DBSet for every table?
+        public DbSet<Tool> Tools { get; set; }
+        public DbSet<ToolRating> ToolRatings { get; set; }
+        public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -54,7 +56,7 @@ namespace ToolChest_Data
     {
         public IdentityUserLoginConfiguration()
         {
-            HasKey(iul=>iul.UserId)
+            HasKey(iul => iul.UserId);
         }
     }
 
