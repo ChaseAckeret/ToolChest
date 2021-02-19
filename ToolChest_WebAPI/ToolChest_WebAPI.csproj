@@ -212,7 +212,9 @@
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="Controllers\ToolCatalogueController.cs" />
     <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\ToolRatingController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
