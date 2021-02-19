@@ -65,12 +65,20 @@
     <Compile Include="RentalListItem.cs" />
     <Compile Include="TimeCreate.cs" />
     <Compile Include="TimeListItem.cs" />
+    <Compile Include="ToolCatalogItemCreate.cs" />
     <Compile Include="ToolCreate.cs" />
     <Compile Include="ToolListItem.cs" />
+    <Compile Include="ToolRatingCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToolChest_Data\ToolChest_Data.csproj">
+      <Project>{81c5cbd6-b8fc-428e-9677-1a74d6a178af}</Project>
+      <Name>ToolChest_Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
