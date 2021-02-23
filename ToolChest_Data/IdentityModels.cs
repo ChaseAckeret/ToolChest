@@ -33,9 +33,9 @@ namespace ToolChest_Data
             return new ApplicationDbContext();
         }
 
-        /*Change "Note" to correct term
-          public DbSet<Note> Notes { get; set; }
-        */
+        //Change "Note" to correct term
+          public DbSet<Customer> Customers { get; set; }
+      
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
