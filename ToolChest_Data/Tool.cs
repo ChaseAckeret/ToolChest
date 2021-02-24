@@ -50,7 +50,6 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageConditionRating / Ratings.Count, 2) : 0;
             }
-            set { }
         }
 
         public virtual double UsabilityRating
@@ -67,7 +66,6 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageUsabilityRating / Ratings.Count, 2) : 0;
             }
-            set { }
         }
         public double AccuracyRating
         {
@@ -83,7 +81,6 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageAccuracyRating / Ratings.Count, 2) : 0;
             }
-            set { }
         }
     }
 }
