@@ -10,6 +10,7 @@ namespace ToolChest_Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "ToolChest_Data.ApplicationDbContext";
         }
 
         protected override void Seed(ToolChest_Data.ApplicationDbContext context)

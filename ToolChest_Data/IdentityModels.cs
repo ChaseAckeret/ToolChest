@@ -34,14 +34,13 @@ namespace ToolChest_Data
             return new ApplicationDbContext();
         }
 
-        //Change "Note" to correct term
-          public DbSet<Customer> Customers { get; set; }
-          public DbSet<Owner> Owners { get; set; }
-        /*
-        public DbSet<Customer> Customers { get; set; }
+        //Add DBSet for every table?
         public DbSet<Tool> Tools { get; set; }
-        */
-        
+        public DbSet<ToolRating> ToolRatings { get; set; }
+        public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
