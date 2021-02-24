@@ -55,18 +55,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerCreate.cs" />
+    <Compile Include="CustomerEdit.cs" />
     <Compile Include="CustomerListItem.cs" />
     <Compile Include="OwnerCreate.cs" />
+    <Compile Include="OwnerEdit.cs" />
     <Compile Include="OwnerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiptCreate.cs" />
+    <Compile Include="ReceiptEdit.cs" />
     <Compile Include="ReceiptListItem.cs" />
     <Compile Include="RentalCreate.cs" />
+    <Compile Include="RentalEdit.cs" />
     <Compile Include="RentalListItem.cs" />
     <Compile Include="TimeCreate.cs" />
+    <Compile Include="TimeEdit.cs" />
     <Compile Include="TimeListItem.cs" />
     <Compile Include="ToolCatalogItemCreate.cs" />
     <Compile Include="ToolCreate.cs" />
+    <Compile Include="ToolEdit.cs" />
     <Compile Include="ToolListItem.cs" />
     <Compile Include="ToolRatingCreate.cs" />
   </ItemGroup>
