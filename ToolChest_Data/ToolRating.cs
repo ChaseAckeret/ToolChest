@@ -13,7 +13,7 @@ namespace ToolChest_Data
         public int ToolRatingID { get; set; }
 
         // foreign Key
-        [ForeignKey(nameof(Tool))]
+        [ForeignKey("Tool")]
 
         public int ToolID { get; set; }
 

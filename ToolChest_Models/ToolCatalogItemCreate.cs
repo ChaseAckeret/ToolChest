@@ -17,7 +17,7 @@ namespace ToolChest_Models
         [StringLength(25, ErrorMessage = "The Short Description must be at least 8 characters and no more than 25 Characters.", MinimumLength = 8)]
         public string ShortDescription { get; set; }
 
-        [StringLength(200, ErrorMessage = "The Short Description must be at least 15 characters and no more than 200 Characters.", MinimumLength = 15)]
+        [StringLength(400, ErrorMessage = "The Long Description must be at least 15 characters and no more than 200 Characters.", MinimumLength = 15)]
         public string LongDescription { get; set; }
 
         public string Brand { get; set; }

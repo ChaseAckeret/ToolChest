@@ -31,6 +31,7 @@ namespace ToolChest_Data
         [Required]
         public ConditionType ToolCondition { get; set; }
 
+        [ForeignKey("ToolCatalogItem")]
         public int ToolCatalogItemID { get; set; }
         public virtual ToolCatalogItem ToolCatalogItem { get; set; }
 
@@ -49,9 +50,10 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageConditionRating / Ratings.Count, 2) : 0;
             }
+            set { }
         }
 
-        public double UsabilityRating
+        public virtual double UsabilityRating
         {
             get
             {
@@ -65,6 +67,7 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageUsabilityRating / Ratings.Count, 2) : 0;
             }
+            set { }
         }
         public double AccuracyRating
         {
@@ -80,6 +83,7 @@ namespace ToolChest_Data
                 // get average
                 return Ratings.Count > 0 ? Math.Round(AverageAccuracyRating / Ratings.Count, 2) : 0;
             }
+            set { }
         }
     }
 }

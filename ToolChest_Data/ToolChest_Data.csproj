@@ -155,6 +155,18 @@
     <Compile Include="Migrations\202102190241360_Addedtoolentities.Designer.cs">
       <DependentUpon>202102190241360_Addedtoolentities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102240146598_RentalKeyAdded.cs" />
+    <Compile Include="Migrations\202102240146598_RentalKeyAdded.Designer.cs">
+      <DependentUpon>202102240146598_RentalKeyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240537078_addedFKtoCatalogue.cs" />
+    <Compile Include="Migrations\202102240537078_addedFKtoCatalogue.Designer.cs">
+      <DependentUpon>202102240537078_addedFKtoCatalogue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240620486_addedsetterstoratings.cs" />
+    <Compile Include="Migrations\202102240620486_addedsetterstoratings.Designer.cs">
+      <DependentUpon>202102240620486_addedsetterstoratings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +187,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102190241360_Addedtoolentities.resx">
       <DependentUpon>202102190241360_Addedtoolentities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240146598_RentalKeyAdded.resx">
+      <DependentUpon>202102240146598_RentalKeyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240537078_addedFKtoCatalogue.resx">
+      <DependentUpon>202102240537078_addedFKtoCatalogue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240620486_addedsetterstoratings.resx">
+      <DependentUpon>202102240620486_addedsetterstoratings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
