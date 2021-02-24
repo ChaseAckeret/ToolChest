@@ -18,5 +18,10 @@ namespace ToolChest_Data
 
         [Required]
         public Guid CustomerId { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
     }
 }
