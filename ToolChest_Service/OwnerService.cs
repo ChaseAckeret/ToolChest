@@ -17,21 +17,21 @@ namespace ToolChest_Service
             _userId = userId;
         }
 
-        public bool CreateOwner(OwnerCreate model)
-        {
-            var entity =
-                new Owner()
-                {
-                    UserId = _userId,
-                    CreatedUtc = DateTimeOffset.Now
-                };
+        //public bool CreateOwner(OwnerCreate model)
+        //{
+        //    var entity =
+        //        new Owner()
+        //        {
+        //            UserId = _userId,
+        //            CreatedUtc = DateTimeOffset.Now
+        //        };
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Owners.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        ctx.Owners.Add(entity);
+        //        return ctx.SaveChanges() == 1;
+        //    }
+        //}
 
         public IEnumerable<OwnerListItem> GetOwners()
         {
