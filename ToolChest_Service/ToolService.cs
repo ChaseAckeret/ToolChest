@@ -68,5 +68,37 @@ namespace ToolChest_Service
             }
         }
 
+        public IEnumerable<ToolListItem> GetTool(int toolID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Tools
+                        .Where(e => e.ToolID == toolID)
+                        .Select(
+                            e =>
+                                new ToolListItem
+                                {
+                                    ToolID = e.ToolID,
+                                    HourlyRate = e.HourlyRate,
+                                    DailyRate = e.DailyRate,
+                                    ToolCondition = e.ToolCondition,
+                                    Catagory = e.ToolCatalogItem.Catagory,
+                                    ShortDescription = e.ToolCatalogItem.ShortDescription,
+                                    LongDescription = e.ToolCatalogItem.LongDescription,
+                                    Brand = e.ToolCatalogItem.Brand,
+                                    PowerSource = e.ToolCatalogItem.PowerSource,
+                                    Model = e.ToolCatalogItem.Model,
+                                    ConditionRating = e.ConditionRating,
+                                    UsabilityRating = e.UsabilityRating,
+                                    AccuracyRating = e.AccuracyRating
+                                }
+                        );
+
+                return query.ToArray();
+
+            }
+        }
     }
 }
