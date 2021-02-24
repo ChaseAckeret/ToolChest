@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -27,15 +28,18 @@ namespace ToolChest_Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        /*Change "Note" to correct term
-          public DbSet<Note> Notes { get; set; }
-        */
+        //Add DBSet for every table?
+        public DbSet<Tool> Tools { get; set; }
+        public DbSet<ToolRating> ToolRatings { get; set; }
+        public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Owner> Owners { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -54,7 +58,7 @@ namespace ToolChest_Data
     {
         public IdentityUserLoginConfiguration()
         {
-            HasKey(iul=>iul.UserId)
+            HasKey(iul => iul.UserId);
         }
     }
 

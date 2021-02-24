@@ -51,7 +51,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
@@ -212,7 +214,9 @@
     <Compile Include="Controllers\ReceiptController.cs" />
     <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Controllers\TimeController.cs" />
+    <Compile Include="Controllers\ToolCatalogueController.cs" />
     <Compile Include="Controllers\ToolController.cs" />
+    <Compile Include="Controllers\ToolRatingController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
