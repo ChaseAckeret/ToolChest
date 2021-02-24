@@ -12,7 +12,7 @@ namespace ToolChest_Data
         [Key]
         public int Id { get; set; }
 
-        public virtual List<CustomerRating> Rating { get; set; }
+        //public virtual List<CustomerRating> Rating { get; set; }
 
         public virtual List<Rental> Rentals { get; set; }
 

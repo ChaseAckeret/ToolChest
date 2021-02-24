@@ -32,7 +32,7 @@ namespace ToolChest_Data
         public ConditionType ToolCondition { get; set; }
 
         public int ToolCatalogItemID { get; set; }
-        public ToolCatalogItem ToolCatalogItem { get; set; }
+        public virtual ToolCatalogItem ToolCatalogItem { get; set; }
 
         public virtual List<ToolRating> Ratings { get; set; } = new List<ToolRating>();
         public double ConditionRating
