@@ -69,7 +69,6 @@
     <Compile Include="RentalListItem.cs" />
     <Compile Include="TimeCreate.cs" />
     <Compile Include="TimeEdit.cs" />
-    <Compile Include="TimeListItem.cs" />
     <Compile Include="ToolCatalogItemCreate.cs" />
     <Compile Include="ToolCreate.cs" />
     <Compile Include="ToolEdit.cs" />

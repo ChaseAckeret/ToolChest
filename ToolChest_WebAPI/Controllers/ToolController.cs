@@ -34,5 +34,22 @@ namespace ToolChest_WebAPI.Controllers
             var ToolService = new ToolService();
             return ToolService;
         }
+
+        public IHttpActionResult Get(int id)
+        {
+
+            ToolService toolService = CreateToolService();
+            var tool = toolService.GetToolByID(id);
+            return Ok(tool);
+        }
+
+        public IHttpActionResult GetAllTools()
+        {
+
+            ToolService toolService = CreateToolService();
+            var tool = toolService.GetAllTools();
+            return Ok(tool);
+        }
     }
 }
+

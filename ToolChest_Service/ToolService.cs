@@ -68,37 +68,73 @@ namespace ToolChest_Service
             }
         }
 
-        public IEnumerable<ToolListItem> GetTool(int toolID)
+        public ToolListItem GetToolByID(int toolID)
         {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Tools
+                        .Single(e => e.ToolID == toolID);
+                return
+                   new ToolListItem
+                   {
+                       ToolID = entity.ToolID,
+                       HourlyRate = entity.HourlyRate,
+                       DailyRate = entity.DailyRate,
+                       ToolCondition = entity.ToolCondition,
+                       Catagory = entity.ToolCatalogItem.Catagory,
+                       ShortDescription = entity.ToolCatalogItem.ShortDescription,
+                       LongDescription = entity.ToolCatalogItem.LongDescription,
+                       Brand = entity.ToolCatalogItem.Brand,
+                       PowerSource = entity.ToolCatalogItem.PowerSource,
+                       Model = entity.ToolCatalogItem.Model,
+                       AccuracyRating = entity.AccuracyRating,
+                       UsabilityRating = entity.UsabilityRating,
+                       ConditionRating = entity.ConditionRating
+                   };
+
+            }
+        }
+
+        public IEnumerable<ToolListItem> GetAllTools()
+
+        {
+            List<ToolListItem> returnlist = new List<ToolListItem>();
+
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Tools
-                        .Where(e => e.ToolID == toolID)
+                        .Where(e => e.ToolID > 0)
                         .Select(
                             e =>
                                 new ToolListItem
                                 {
                                     ToolID = e.ToolID,
-                                    HourlyRate = e.HourlyRate,
-                                    DailyRate = e.DailyRate,
-                                    ToolCondition = e.ToolCondition,
-                                    Catagory = e.ToolCatalogItem.Catagory,
-                                    ShortDescription = e.ToolCatalogItem.ShortDescription,
-                                    LongDescription = e.ToolCatalogItem.LongDescription,
-                                    Brand = e.ToolCatalogItem.Brand,
-                                    PowerSource = e.ToolCatalogItem.PowerSource,
-                                    Model = e.ToolCatalogItem.Model,
-                                    ConditionRating = e.ConditionRating,
-                                    UsabilityRating = e.UsabilityRating,
-                                    AccuracyRating = e.AccuracyRating
+                                    //HourlyRate = e.HourlyRate,
+                                    //DailyRate = e.DailyRate,
+                                    //ToolCondition = e.ToolCondition,
+                                    //Catagory = e.ToolCatalogItem.Catagory,
+                                    //ShortDescription = e.ToolCatalogItem.ShortDescription,
+                                    //LongDescription = e.ToolCatalogItem.LongDescription,
+                                    //Brand = e.ToolCatalogItem.Brand,
+                                    //PowerSource = e.ToolCatalogItem.PowerSource,
+                                    //Model = e.ToolCatalogItem.Model,
+                                    //AccuracyRating = e.AccuracyRating,
+                                    //UsabilityRating = e.UsabilityRating,
+                                    //ConditionRating = e.ConditionRating
                                 }
                         );
+                foreach (ToolListItem result in query)
+                {
+                    returnlist.Add(GetToolByID(result.ToolID));
+                }
 
-                return query.ToArray();
-
+                return returnlist;
             }
         }
+
     }
 }
