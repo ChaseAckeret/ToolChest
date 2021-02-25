@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToolChest_Data;
 using static ToolChest_Data.Tool;
 
 namespace ToolChest_Models
@@ -30,10 +31,12 @@ namespace ToolChest_Models
         public string PowerSource { get; set; }
 
         public string Model { get; set; }
+
         public double ConditionRating { get; set; }
 
         public double UsabilityRating { get; set; }
 
         public double AccuracyRating { get; set; }
+
     }
 }
