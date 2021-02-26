@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="CustomerRating.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202102170308312_InitialCreate.cs" />
     <Compile Include="Migrations\202102170308312_InitialCreate.Designer.cs">
