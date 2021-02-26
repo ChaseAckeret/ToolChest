@@ -10,9 +10,8 @@ namespace ToolChest_Models
 {
     public class ToolCreate
     {
-        //[ForeignKey(nameof(Owner))]
-        //[Required]
-        //public int OwnerID { get; set; }
+
+        public int OwnerID { get; set; }
 
         [Required]
         public decimal HourlyRate { get; set; }
