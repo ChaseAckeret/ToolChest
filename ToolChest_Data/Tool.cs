@@ -31,8 +31,9 @@ namespace ToolChest_Data
         [Required]
         public ConditionType ToolCondition { get; set; }
 
+        [ForeignKey("ToolCatalogItem")]
         public int ToolCatalogItemID { get; set; }
-        public ToolCatalogItem ToolCatalogItem { get; set; }
+        public virtual ToolCatalogItem ToolCatalogItem { get; set; }
 
         public virtual List<ToolRating> Ratings { get; set; } = new List<ToolRating>();
         public double ConditionRating
@@ -51,7 +52,7 @@ namespace ToolChest_Data
             }
         }
 
-        public double UsabilityRating
+        public virtual double UsabilityRating
         {
             get
             {

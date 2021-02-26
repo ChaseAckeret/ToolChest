@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToolChest_Models
 {
-    public class TimeListItem
+    public class OwnerRatingListItem
     {
     }
 }

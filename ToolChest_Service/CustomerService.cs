@@ -22,8 +22,8 @@ namespace ToolChest_Service
             var entity =
                 new Customer()
                 {
-                    CustomerId = _userId,
-                    CreatedUtc = DateTimeOffset.Now
+                 //   CustomerId = _userId,
+                 //   CreatedUtc = DateTimeOffset.Now
                 };
 
             using (var ctx = new ApplicationDbContext())

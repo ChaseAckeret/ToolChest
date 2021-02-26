@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToolChest_Data;
 using static ToolChest_Data.Tool;
 
 namespace ToolChest_Models
 {
     public class ToolListItem
     {
+        // add display labels to these
+        //[Display(Name = "Created")]
+
         public int ToolID { get; set; }
         public decimal HourlyRate { get; set; }
 
@@ -16,6 +20,23 @@ namespace ToolChest_Models
 
         public ConditionType ToolCondition { get; set; }
 
-        public int ToolCatalogItem;
+        public ToolChest_Data.ToolCatalogItem.MajorCatagory Catagory { get; set; }
+
+        public string ShortDescription { get; set; }
+
+        public string LongDescription { get; set; }
+
+        public string Brand { get; set; }
+
+        public string PowerSource { get; set; }
+
+        public string Model { get; set; }
+
+        public double ConditionRating { get; set; }
+
+        public double UsabilityRating { get; set; }
+
+        public double AccuracyRating { get; set; }
+
     }
 }

@@ -8,6 +8,8 @@ namespace ToolChest_Models
 {
     public class OwnerCreate
     {
-        public bool OwnerEUA { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        
     }
 }
