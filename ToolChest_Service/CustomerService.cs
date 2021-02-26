@@ -22,8 +22,8 @@ namespace ToolChest_Service
             var entity =
                 new Customer()
                 {
-                 //   CustomerId = _userId,
-                 //   CreatedUtc = DateTimeOffset.Now
+                    CustomerId = _userId,
+                    CreatedUtc = DateTimeOffset.Now
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -46,7 +46,7 @@ namespace ToolChest_Service
                                 new CustomerListItem
                                 {
                                     CustomerId =e.Id,
-                                    CreatedUtc =e.CreatedUtc
+                                    CreatedUtc =e.CreatedUtc,
                                 }
                         );
 

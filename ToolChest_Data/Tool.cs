@@ -15,13 +15,12 @@ namespace ToolChest_Data
         [Key]
         public int ToolID { get; set; }
 
-        //// foreign Key
-        //[ForeignKey(nameof(Owner))]
+        
+        [ForeignKey(nameof(Owner))]
+        public int OwnerID { get; set; }
 
-        //public int OwnerID { get; set; }
-
-        ////navigation property
-        //public virtual Owner Owner { get; set; }
+        //navigation property
+        public virtual Owner Owner { get; set; }
 
         [Required]
         public decimal HourlyRate { get; set; }
@@ -52,7 +51,7 @@ namespace ToolChest_Data
             }
         }
 
-        public virtual double UsabilityRating
+        public double UsabilityRating
         {
             get
             {

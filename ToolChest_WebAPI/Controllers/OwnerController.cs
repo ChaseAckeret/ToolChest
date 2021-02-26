@@ -27,17 +27,17 @@ namespace ToolChest_WebAPI.Controllers
             return Ok(owners);
         }
 
-        //public IHttpActionResult Post(OwnerCreate owner)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        public IHttpActionResult Post(OwnerCreate owner)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-        //    var service = CreateOwnerService();
+            var service = CreateOwnerService();
 
-        //    if (!service.CreateOwner(owner))
-        //        return InternalServerError();
+            if (!service.CreateOwner(owner))
+                return InternalServerError();
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
     }
 }

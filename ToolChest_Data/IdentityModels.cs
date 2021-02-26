@@ -46,10 +46,10 @@ namespace ToolChest_Data
         public DbSet<ToolRating> ToolRatings { get; set; }
         public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Owner> Owners { get; set; }
-        public DbSet<Rental> Rentals { get; set; }
-        public DbSet<OwnerRating> OwnerRatings { get; set; }
         public DbSet<CustomerRating> CustomerRatings { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<OwnerRating> OwnerRatings { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
