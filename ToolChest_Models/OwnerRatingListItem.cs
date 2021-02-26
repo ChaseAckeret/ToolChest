@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToolChest_Models
 {
-    public class OwnerCreate
+    public class OwnerRatingListItem
     {
-        public string Name { get; set; }
-        public string Address { get; set; }
-        
     }
 }
