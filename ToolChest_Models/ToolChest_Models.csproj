@@ -57,6 +57,8 @@
     <Compile Include="CustomerCreate.cs" />
     <Compile Include="CustomerEdit.cs" />
     <Compile Include="CustomerListItem.cs" />
+    <Compile Include="CustomerRatingCreate.cs" />
+    <Compile Include="CustomerRatingListItem.cs" />
     <Compile Include="OwnerCreate.cs" />
     <Compile Include="OwnerEdit.cs" />
     <Compile Include="OwnerListItem.cs" />
