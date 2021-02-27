@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OwnerList.cs" />
+    <Compile Include="ToolFullDetail.cs" />
     <Compile Include="CustomerCreate.cs" />
     <Compile Include="CustomerEdit.cs" />
     <Compile Include="CustomerListItem.cs" />

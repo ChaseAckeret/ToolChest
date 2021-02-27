@@ -9,21 +9,37 @@ using ToolChest_Models;
 namespace ToolChest_Service
 {
     public class ToolService
+
+
     {
+        //private readonly Guid _userId;
+        private readonly String _userId;
+
+        public ToolService(String userId)
+        {
+            _userId = userId;
+        }
         public bool CreateTool(ToolCreate model)
         {
-            var entity =
+            using (var ctx = new ApplicationDbContext())
+            {
+                // find teh UserID that matches this entered OwnerID
+                var findUserID =
+                    ctx
+                        .Tools
+                        .Single(e => e.OwnerID == model.OwnerID);
+
+                var entity =
                 new Tool()
                 {
-
+                    UserID = findUserID.UserID,
+                    OwnerID = model.OwnerID,
                     HourlyRate = model.HourlyRate,
                     DailyRate = model.DailyRate,
                     ToolCondition = model.ToolCondition,
                     ToolCatalogItemID = model.ToolCatalogItemID
                 };
 
-            using (var ctx = new ApplicationDbContext())
-            {
                 ctx.Tools.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -34,7 +50,7 @@ namespace ToolChest_Service
                 new ToolRating()
                 {
 
-                    ToolID = model.ToolID,
+                    FKToolID = model.ToolID,
                     Accuracy = model.Accuracy,
                     Condition = model.Condition,
                     Usability = model.Usability
@@ -80,6 +96,37 @@ namespace ToolChest_Service
                    new ToolListItem
                    {
                        ToolID = entity.ToolID,
+                       HourlyRate = entity.HourlyRate,
+                       DailyRate = entity.DailyRate,
+                       ToolCondition = entity.ToolCondition,
+                       Catagory = entity.ToolCatalogItem.Catagory,
+                       ShortDescription = entity.ToolCatalogItem.ShortDescription,
+                       LongDescription = entity.ToolCatalogItem.LongDescription,
+                       Brand = entity.ToolCatalogItem.Brand,
+                       PowerSource = entity.ToolCatalogItem.PowerSource,
+                       Model = entity.ToolCatalogItem.Model,
+                       AccuracyRating = entity.AccuracyRating,
+                       UsabilityRating = entity.UsabilityRating,
+                       ConditionRating = entity.ConditionRating
+                   };
+
+            }
+        }
+
+        public ToolFullDetail GetFullToolDetailByID(int toolID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Tools
+                        .Single(e => e.ToolID == toolID);
+                return
+                   new ToolFullDetail
+                   {
+                       ToolID = entity.ToolID,
+                       OwnerID = entity.Owner.OwnerId,
+                       Owneremail = entity.Owner.ApplicationUser.Email,
                        HourlyRate = entity.HourlyRate,
                        DailyRate = entity.DailyRate,
                        ToolCondition = entity.ToolCondition,

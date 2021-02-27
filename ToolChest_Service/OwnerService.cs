@@ -10,12 +10,46 @@ namespace ToolChest_Service
 {
     public class OwnerService
     {
-        private readonly Guid _userId;
+        //private readonly Guid _userId;
+        private readonly String _userId;
 
-        public OwnerService(Guid userId)
+        public OwnerService(String userId)
         {
             _userId = userId;
         }
+        public int FindNextOwnerID()
+        {
+            // Method finds the highest OwnerId and returns it + 1. Makes a unique OwnerID int
+
+            //List<Owner> returnlist = new List<Owner>();
+
+            int NextOwnerID = 1;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Owners
+                        .Where(e => e.OwnerId > 0)
+                        .Select(
+                            e =>
+                                new OwnerList
+                                {
+                                    OwnerID = e.OwnerId,
+                                }
+                        );
+                foreach (OwnerList result in query)
+                {
+                    if (result.OwnerID > NextOwnerID)
+                    {
+                        NextOwnerID = result.OwnerID;
+                    }
+                }
+
+                return NextOwnerID++;
+            } // end FindNextOwnerID
+        }
+
 
         public bool CreateOwner(OwnerCreate model)
         {
@@ -23,6 +57,7 @@ namespace ToolChest_Service
                  new Owner()
                  {
                      UserId = _userId,
+                     OwnerId = FindNextOwnerID(),
                      CreatedUtc = DateTimeOffset.Now
                  };
 

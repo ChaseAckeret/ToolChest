@@ -15,7 +15,8 @@ namespace ToolChest_WebAPI.Controllers
     {
         private OwnerService CreateOwnerService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            //var userId = Guid.Parse(User.Identity.GetUserId()); 
+            string userId = User.Identity.GetUserId();
             var ownerService = new OwnerService(userId);
             return ownerService;
         }

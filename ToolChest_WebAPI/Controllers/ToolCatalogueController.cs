@@ -28,8 +28,13 @@ namespace ToolChest_WebAPI.Controllers
         }
         private ToolService CreateToolCatalogueItemService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var ToolService = new ToolService();
+
+            
+            // this is the userID for the person initiating the Post
+
+            //var userId = Guid.Parse(User.Identity.GetUserId());           
+            string userId = User.Identity.GetUserId();
+            var ToolService = new ToolService(userId);
             return ToolService;
 
         }

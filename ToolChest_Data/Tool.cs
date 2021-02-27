@@ -16,11 +16,14 @@ namespace ToolChest_Data
         public int ToolID { get; set; }
 
         
-        [ForeignKey(nameof(Owner))]
-        public int OwnerID { get; set; }
+        [ForeignKey("Owner")]
+        public string UserID { get; set; }
 
         //navigation property
         public virtual Owner Owner { get; set; }
+
+        [Required]
+        public int OwnerID { get; set; }
 
         [Required]
         public decimal HourlyRate { get; set; }
@@ -34,7 +37,7 @@ namespace ToolChest_Data
         public int ToolCatalogItemID { get; set; }
         public virtual ToolCatalogItem ToolCatalogItem { get; set; }
 
-        public virtual List<ToolRating> Ratings { get; set; } = new List<ToolRating>();
+        public virtual List<ToolRating> Ratings { get; set; } 
         public double ConditionRating
         {
             get

@@ -20,6 +20,8 @@ namespace ToolChest_Data
         public string State { get; set; }
         public int Zip { get; set; }
 
+        public virtual Owner Owner { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
