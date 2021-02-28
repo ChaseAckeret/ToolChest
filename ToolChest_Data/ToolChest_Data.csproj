@@ -155,6 +155,22 @@
     <Compile Include="Migrations\202102272049272_GUIDkey.designer.cs">
       <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.cs" />
+    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.designer.cs">
+      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.cs" />
+    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.designer.cs">
+      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102280040191_removedownercustomerflags.cs" />
+    <Compile Include="Migrations\202102280040191_removedownercustomerflags.designer.cs">
+      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.cs" />
+    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.designer.cs">
+      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="OwnerRating.cs" />
@@ -165,6 +181,7 @@
     <Compile Include="Tool.cs" />
     <Compile Include="ToolCatalogItem.cs" />
     <Compile Include="ToolRating.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -173,6 +190,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102272049272_GUIDkey.resx">
       <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102272347094_GRefactorUsersTable.resx">
+      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102280031036_AddedOwnerCustomerFlags.resx">
+      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102280040191_removedownercustomerflags.resx">
+      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102280203047_changedkeysonownerrating.resx">
+      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

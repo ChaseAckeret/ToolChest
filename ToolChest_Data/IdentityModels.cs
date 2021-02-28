@@ -13,14 +13,7 @@ namespace ToolChest_Data
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public int Zip { get; set; }
 
-        public virtual Owner Owner { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -47,11 +40,10 @@ namespace ToolChest_Data
         public DbSet<Tool> Tools { get; set; }
         public DbSet<ToolRating> ToolRatings { get; set; }
         public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerRating> CustomerRatings { get; set; }
-        public DbSet<Owner> Owners { get; set; }
         public DbSet<OwnerRating> OwnerRatings { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

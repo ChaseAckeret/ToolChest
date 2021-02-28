@@ -29,13 +29,13 @@ namespace ToolChest_Service
             {
                 var query =
                     ctx
-                        .Owners
-                        .Where(e => e.OwnerId > 0)
+                        .Users
+                        .Where(e => e.UserID > 0)
                         .Select(
                             e =>
                                 new OwnerList
                                 {
-                                    OwnerID = e.OwnerId,
+                                    OwnerID = e.UserID,
                                 }
                         );
                 foreach (OwnerList result in query)
@@ -51,43 +51,48 @@ namespace ToolChest_Service
         }
 
 
-        public bool CreateOwner(OwnerCreate model)
+        public bool CreateOwner(UserCreate model)
         {
             var entity =
-                 new Owner()
+                 new User()
                  {
-                     UserId = _userId,
-                     OwnerId = FindNextOwnerID(),
+                     UserID = FindNextOwnerID(),
+                     FName = model.FName,
+                     LName = model.LName,
+                     StreetAddress = model.StreetAddress,
+                     City = model.City,
+                     State = model.State,
+                     Zip = model.Zip,
                      CreatedUtc = DateTimeOffset.Now
                  };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Owners.Add(entity);
+                ctx.Users.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<OwnerListItem> GetOwners()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Owners
-                        .Where(e => e.UserId == _userId)
-                        .Select(
-                            e =>
-                                new OwnerListItem
-                                {
-                                    OwnerId = e.OwnerId,
-                                    CreatedUtc = e.CreatedUtc
+        //public IEnumerable<OwnerListItem> GetUsers()
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //                .Users
+        //                .Where(e => e.IsOwner == true)
+        //                .Select(
+        //                    e =>
+        //                        new OwnerListItem
+        //                        {
+        //                            OwnerId = e.OwnerId,
+        //                            CreatedUtc = e.CreatedUtc
 
-                                }
-                        );
+        //                        }
+        //                );
 
-                return query.ToArray();
-            }
-        }
+        //        return query.ToArray();
+        //    }
+        //}
     }
 }

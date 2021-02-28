@@ -9,7 +9,7 @@ using static ToolChest_Data.Tool;
 
 namespace ToolChest_Models
 {
-    public class ToolFullDetail
+    public class ToolDetails
     {
         // add display labels to these
         //[Display(Name = "Created")]

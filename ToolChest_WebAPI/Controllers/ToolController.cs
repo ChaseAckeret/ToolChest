@@ -34,7 +34,7 @@ namespace ToolChest_WebAPI.Controllers
 
             //var userId = Guid.Parse(User.Identity.GetUserId());           
             string userId = User.Identity.GetUserId();
-            var ToolService = new ToolService(userId);
+            var ToolService = new ToolService();
             return ToolService;
         }
 

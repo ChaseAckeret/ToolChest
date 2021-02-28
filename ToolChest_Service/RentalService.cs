@@ -12,29 +12,29 @@ namespace ToolChest_Service
     {
 
 
-        //method to create a rental by passing in the required information
-        public bool CreateRental(RentalCreate model)
-        {
-            var entity =
-                new Rental()
-                {
-                    ToolId = model.ToolId,
+        ////method to create a rental by passing in the required information
+        //public bool CreateRental(RentalCreate model)
+        //{
+        //    var entity =
+        //        new Rental()
+        //        {
+        //            ToolId = model.ToolId,
 
-                    CustomerId = model.CustomerId,
+        //            CustomerId = model.CustomerId,
 
-                    ScheduledStartDate = model.ScheduledStartDate,
+        //            ScheduledStartDate = model.ScheduledStartDate,
 
-                    ScheduledEndDate = model.ScheduledEndDate
+        //            ScheduledEndDate = model.ScheduledEndDate
 
-                };//end of defining attributes for new Rental
+        //        };//end of defining attributes for new Rental
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Rentals.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }//end of using
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        ctx.Rentals.Add(entity);
+        //        return ctx.SaveChanges() == 1;
+        //    }//end of using
 
-        }//end of method CreateRental
+        //}//end of method CreateRental
 
 
 
