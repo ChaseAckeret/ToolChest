@@ -19,8 +19,8 @@ namespace ToolChest_Models
         [Display(Name = "OwnerID")]
         public int OwnerID { get; set; }
 
-        [Display(Name = "Owner email")]
-        public string Owneremail { get; set; }
+        [Display(Name = "Owner Name")]
+        public string Name { get; set; }
 
         public decimal HourlyRate { get; set; }
 

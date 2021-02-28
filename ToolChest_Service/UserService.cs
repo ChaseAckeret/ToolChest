@@ -17,45 +17,11 @@ namespace ToolChest_Service
             _userId = userId;
         }
 
-        public int FindNextUserID()
-        {
-            // Method finds the highest UserId and returns it + 1. Makes a unique OwnerID int
-
-            //List<Owner> returnlist = new List<Owner>();
-
-            int NextUserID = 1;
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Users
-                        .Where(e => e.UserID > 0)
-                        .Select(
-                            e =>
-                                new UserKeyList
-                                {
-                                    UserID = e.UserID,
-                                }
-                        );
-                foreach (UserKeyList result in query)
-                {
-                    if (result.UserID > NextUserID)
-                    {
-                        NextUserID = result.UserID;
-                    }
-                }
-                return NextUserID + 1;
-            }
-        }
-
-
             public bool CreateUser(UserCreate model)
             {
                 var entity =
                     new User()
                     {
-                        UserID = FindNextUserID(),
                         FName = model.FName,
                         LName = model.LName,
                         StreetAddress = model.StreetAddress,

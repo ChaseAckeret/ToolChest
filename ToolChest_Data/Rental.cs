@@ -13,26 +13,24 @@ namespace ToolChest_Data
         [Key]
         public int RentalId { get; set; }
 
-        //[ForeignKey("Tool")]
-        //public int ToolId { get; set; }
-        //public virtual Tool Tool { get; set; }
+        [ForeignKey("Tool")]
+        public int? ToolId { get; set; }
+        public virtual Tool Tool { get; set; }
 
 
         //[ForeignKey("OwnerID")]
         //public int OwnerId { get; set; }
         //public virtual User OwnerID { get; set; }
 
-        //[ForeignKey("CustomerID")]
-        //public int CustomerId { get; set; }
-        //public virtual User CustomerID { get; set; }
+        [ForeignKey("CustomerID")]
+        public int CustomerId { get; set; }
+        public virtual User CustomerID { get; set; }
 
         //public int RecieptId { get; set; }
         // future feature
 
-
-
-        //public DateTimeOffset ScheduledStartDate { get; set; }
-        //public DateTimeOffset ScheduledEndDate { get; set; }
+        public DateTimeOffset ScheduledStartDate { get; set; }
+        public DateTimeOffset ScheduledEndDate { get; set; }
 
 
     }//end of class Rental

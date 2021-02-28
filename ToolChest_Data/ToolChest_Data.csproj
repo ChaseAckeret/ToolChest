@@ -171,6 +171,10 @@
     <Compile Include="Migrations\202102280203047_changedkeysonownerrating.designer.cs">
       <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102280316197_AddedRentalTable.cs" />
+    <Compile Include="Migrations\202102280316197_AddedRentalTable.designer.cs">
+      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Owner.cs" />
     <Compile Include="OwnerRating.cs" />
@@ -202,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102280203047_changedkeysonownerrating.resx">
       <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102280316197_AddedRentalTable.resx">
+      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

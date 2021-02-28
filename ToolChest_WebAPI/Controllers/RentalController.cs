@@ -33,41 +33,43 @@ namespace ToolChest_WebAPI.Controllers
 
         //post a rental
 
-        //public IHttpActionResult Post(RentalCreate Rental)
-        //{
+        public IHttpActionResult Post(RentalCreate Rental)
+        {
 
-        //    //start by checking that the model state is valid
-        //    if (!ModelState.IsValid)
-        //    {
+            //start by checking that the model state is valid
+            if (!ModelState.IsValid)
+            {
 
-        //        return BadRequest(ModelState);
+                return BadRequest(ModelState);
 
-        //    }//end of if state valid
+            }//end of if state valid
 
-        //    //if it's valid create a RentalService
-        //    var service = CreateRentalService();
+            //if it's valid create a RentalService
+            var service = CreateRentalService();
 
-        //    //now we are going to call the createRental method inside an if statement
-        //    //if it succeeds great, and if it doesnt we return and InternalServerError
-        //    if (!service.CreateRental(Rental))
-        //    {
+            //now we are going to call the createRental method inside an if statement
+            //if it succeeds great, and if it doesnt we return and InternalServerError
+            if (!service.CreateRental(Rental))
+            {
 
-        //        //didn't work, return problem
-        //        return InternalServerError();
-
-
-        //    }//end of if not createRental (no success)
-
-        //    //if we get here it worked, yay
-        //    return Ok();
+                //didn't work, return problem
+                return InternalServerError();
 
 
+            }//end of if not createRental (no success)
 
-        //}//end of Post method
+            //if we get here it worked, yay
+            return Ok();
 
 
 
+            //}//end of Post method
 
-    }//end of class RentalController
+
+
+
+        }//end of class RentalController
+    }
 }
+
 

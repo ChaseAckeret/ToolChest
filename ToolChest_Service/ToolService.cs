@@ -122,11 +122,7 @@ namespace ToolChest_Service
                    {
                        ToolID = entity.ToolID,
                        OwnerID = entity.Owner.UserID,
-                       
-                       // fix me in Model
-                       Owneremail = entity.Owner.LName,
-
-                       //
+                       Name = entity.Owner.FName + " " + entity.Owner.LName,
                        HourlyRate = entity.HourlyRate,
                        DailyRate = entity.DailyRate,
                        ToolCondition = entity.ToolCondition,
