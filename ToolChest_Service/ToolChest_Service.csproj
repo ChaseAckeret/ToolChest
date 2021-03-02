@@ -63,6 +63,7 @@
     <Compile Include="RentalService.cs" />
     <Compile Include="TimeService.cs" />
     <Compile Include="ToolService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

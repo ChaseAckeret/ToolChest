@@ -15,7 +15,7 @@ namespace ToolChest_Data
         // foreign Key
         [ForeignKey("Tool")]
 
-        public int ToolID { get; set; }
+        public int FKToolID { get; set; }
 
         //navigation property
         public virtual Tool Tool { get; set; }

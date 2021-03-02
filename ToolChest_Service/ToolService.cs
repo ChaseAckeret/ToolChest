@@ -9,21 +9,33 @@ using ToolChest_Models;
 namespace ToolChest_Service
 {
     public class ToolService
+
+
     {
+        //private readonly Guid _userId;
+ //       private readonly String _userId;
+
+        public ToolService()
+        {
+ //           _userId = userId;
+        }
         public bool CreateTool(ToolCreate model)
         {
-            var entity =
+            using (var ctx = new ApplicationDbContext())
+            {
+
+                var entity =
                 new Tool()
                 {
-
+                    OwnerID = model.OwnerID,
                     HourlyRate = model.HourlyRate,
                     DailyRate = model.DailyRate,
                     ToolCondition = model.ToolCondition,
-                    ToolCatalogItemID = model.ToolCatalogItemID
+                    ToolCatalogItemID = model.ToolCatalogItemID,
+                   
                 };
 
-            using (var ctx = new ApplicationDbContext())
-            {
+                //entity.Owner.IsOwner = true;
                 ctx.Tools.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -34,7 +46,7 @@ namespace ToolChest_Service
                 new ToolRating()
                 {
 
-                    ToolID = model.ToolID,
+                    FKToolID = model.ToolID,
                     Accuracy = model.Accuracy,
                     Condition = model.Condition,
                     Usability = model.Usability
@@ -97,6 +109,37 @@ namespace ToolChest_Service
             }
         }
 
+        public ToolDetails GetFullToolDetailByID(int toolID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Tools
+                        .Single(e => e.ToolID == toolID);
+                return
+                   new ToolDetails
+                   {
+                       ToolID = entity.ToolID,
+                       OwnerID = entity.Owner.UserID,
+                       Name = entity.Owner.FName + " " + entity.Owner.LName,
+                       HourlyRate = entity.HourlyRate,
+                       DailyRate = entity.DailyRate,
+                       ToolCondition = entity.ToolCondition,
+                       Catagory = entity.ToolCatalogItem.Catagory,
+                       ShortDescription = entity.ToolCatalogItem.ShortDescription,
+                       LongDescription = entity.ToolCatalogItem.LongDescription,
+                       Brand = entity.ToolCatalogItem.Brand,
+                       PowerSource = entity.ToolCatalogItem.PowerSource,
+                       Model = entity.ToolCatalogItem.Model,
+                       AccuracyRating = entity.AccuracyRating,
+                       UsabilityRating = entity.UsabilityRating,
+                       ConditionRating = entity.ConditionRating
+                   };
+
+            }
+        }
+
         public IEnumerable<ToolListItem> GetAllTools()
 
         {
@@ -113,18 +156,35 @@ namespace ToolChest_Service
                                 new ToolListItem
                                 {
                                     ToolID = e.ToolID,
-                                    //HourlyRate = e.HourlyRate,
-                                    //DailyRate = e.DailyRate,
-                                    //ToolCondition = e.ToolCondition,
-                                    //Catagory = e.ToolCatalogItem.Catagory,
-                                    //ShortDescription = e.ToolCatalogItem.ShortDescription,
-                                    //LongDescription = e.ToolCatalogItem.LongDescription,
-                                    //Brand = e.ToolCatalogItem.Brand,
-                                    //PowerSource = e.ToolCatalogItem.PowerSource,
-                                    //Model = e.ToolCatalogItem.Model,
-                                    //AccuracyRating = e.AccuracyRating,
-                                    //UsabilityRating = e.UsabilityRating,
-                                    //ConditionRating = e.ConditionRating
+
+                                }
+                        );
+                foreach (ToolListItem result in query)
+                {
+                    returnlist.Add(GetToolByID(result.ToolID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        public IEnumerable<ToolListItem> GetToolsByOwnerID(int ownerID)
+
+        {
+            List<ToolListItem> returnlist = new List<ToolListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Tools
+                        .Where(e => e.OwnerID == ownerID)
+                        .Select(
+                            e =>
+                                new ToolListItem
+                                {
+                                    ToolID = e.ToolID,
+
                                 }
                         );
                 foreach (ToolListItem result in query)

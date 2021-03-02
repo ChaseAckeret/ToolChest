@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ToolChest_Models
 {
-    public class ReceiptCreate
+    public class UserKeyList
     {
 
-        public int RentedTool { get; set; }
-        public int CustomerID { get; set; }
+        public int UserID { get; set; }
     }
 }

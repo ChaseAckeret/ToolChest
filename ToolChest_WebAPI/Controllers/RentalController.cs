@@ -63,11 +63,13 @@ namespace ToolChest_WebAPI.Controllers
 
 
 
-        }//end of Post method
+            //}//end of Post method
 
 
 
 
-    }//end of class RentalController
+        }//end of class RentalController
+    }
 }
+
 

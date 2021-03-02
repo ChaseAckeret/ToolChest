@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OwnerList.cs" />
+    <Compile Include="OwnerListItem.cs" />
+    <Compile Include="ToolDetails.cs" />
     <Compile Include="CustomerCreate.cs" />
     <Compile Include="CustomerEdit.cs" />
     <Compile Include="CustomerListItem.cs" />
@@ -61,7 +64,6 @@
     <Compile Include="CustomerRatingListItem.cs" />
     <Compile Include="OwnerCreate.cs" />
     <Compile Include="OwnerEdit.cs" />
-    <Compile Include="OwnerListItem.cs" />
     <Compile Include="OwnerRatingCreate.cs" />
     <Compile Include="OwnerRatingListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +80,8 @@
     <Compile Include="ToolEdit.cs" />
     <Compile Include="ToolListItem.cs" />
     <Compile Include="ToolRatingCreate.cs" />
+    <Compile Include="UserCreate.cs" />
+    <Compile Include="UserKeyList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

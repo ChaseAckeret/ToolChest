@@ -28,7 +28,10 @@ namespace ToolChest_WebAPI.Controllers
         }
         private ToolService CreateToolRatingService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            // this is the userID for the person initiating the Post
+
+            //var userId = Guid.Parse(User.Identity.GetUserId());           
+            string userId = User.Identity.GetUserId();
             var ToolService = new ToolService();
             return ToolService;
 
