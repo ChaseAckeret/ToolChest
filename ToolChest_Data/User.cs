@@ -76,7 +76,7 @@ namespace ToolChest_Data
         }
 
         // Rentals Stuff
-        //public virtual List<Rental> Rentals { get; set; }
+        public virtual List<Rental> Rentals { get; set; }
 
 
         //  Customer Stuff

@@ -148,7 +148,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
     <Compile Include="CustomerRating.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202102272049272_GUIDkey.cs" />
@@ -176,7 +175,6 @@
       <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Owner.cs" />
     <Compile Include="OwnerRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receipt.cs" />
