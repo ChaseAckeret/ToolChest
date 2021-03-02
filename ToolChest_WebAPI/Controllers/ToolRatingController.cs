@@ -22,7 +22,7 @@ namespace ToolChest_WebAPI.Controllers
             var service = CreateToolRatingService();
 
             if (!service.CreateToolRating(ToolRating))
-                return InternalServerError();
+                return Content(HttpStatusCode.NotFound, "Tool ID does not exist");
 
             return Ok();
         }

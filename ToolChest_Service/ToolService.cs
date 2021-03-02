@@ -13,11 +13,11 @@ namespace ToolChest_Service
 
     {
         //private readonly Guid _userId;
- //       private readonly String _userId;
+        //       private readonly String _userId;
 
         public ToolService()
         {
- //           _userId = userId;
+            //           _userId = userId;
         }
         public bool CreateTool(ToolCreate model)
         {
@@ -32,7 +32,7 @@ namespace ToolChest_Service
                     DailyRate = model.DailyRate,
                     ToolCondition = model.ToolCondition,
                     ToolCatalogItemID = model.ToolCatalogItemID,
-                   
+
                 };
 
                 //entity.Owner.IsOwner = true;
@@ -42,18 +42,31 @@ namespace ToolChest_Service
         }
         public bool CreateToolRating(ToolRatingCreate model)
         {
-            var entity =
-                new ToolRating()
-                {
-
-                    FKToolID = model.ToolID,
-                    Accuracy = model.Accuracy,
-                    Condition = model.Condition,
-                    Usability = model.Usability
-                };
-
             using (var ctx = new ApplicationDbContext())
             {
+
+                try
+                {
+                var checkIfExists = ctx.Tools.Single(e => e.ToolID == model.ToolID);
+                }
+                catch (System.InvalidOperationException)
+                {
+                    return false;
+                }
+
+
+
+                var entity =
+                    new ToolRating()
+                    {
+
+                        FKToolID = model.ToolID,
+                        Accuracy = model.Accuracy,
+                        Condition = model.Condition,
+                        Usability = model.Usability
+                    };
+
+
                 ctx.ToolRatings.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -88,23 +101,24 @@ namespace ToolChest_Service
                     ctx
                         .Tools
                         .Single(e => e.ToolID == toolID);
+
                 return
-                   new ToolListItem
-                   {
-                       ToolID = entity.ToolID,
-                       HourlyRate = entity.HourlyRate,
-                       DailyRate = entity.DailyRate,
-                       ToolCondition = entity.ToolCondition,
-                       Catagory = entity.ToolCatalogItem.Catagory,
-                       ShortDescription = entity.ToolCatalogItem.ShortDescription,
-                       LongDescription = entity.ToolCatalogItem.LongDescription,
-                       Brand = entity.ToolCatalogItem.Brand,
-                       PowerSource = entity.ToolCatalogItem.PowerSource,
-                       Model = entity.ToolCatalogItem.Model,
-                       AccuracyRating = entity.AccuracyRating,
-                       UsabilityRating = entity.UsabilityRating,
-                       ConditionRating = entity.ConditionRating
-                   };
+                new ToolListItem
+                {
+                    ToolID = entity.ToolID,
+                    HourlyRate = entity.HourlyRate,
+                    DailyRate = entity.DailyRate,
+                    ToolCondition = entity.ToolCondition,
+                    Catagory = entity.ToolCatalogItem.Catagory,
+                    ShortDescription = entity.ToolCatalogItem.ShortDescription,
+                    LongDescription = entity.ToolCatalogItem.LongDescription,
+                    Brand = entity.ToolCatalogItem.Brand,
+                    PowerSource = entity.ToolCatalogItem.PowerSource,
+                    Model = entity.ToolCatalogItem.Model,
+                    AccuracyRating = entity.AccuracyRating,
+                    UsabilityRating = entity.UsabilityRating,
+                    ConditionRating = entity.ConditionRating
+                };
 
             }
         }

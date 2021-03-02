@@ -10,11 +10,8 @@ namespace ToolChest_Service
 {
     public class UserService
     {
-        private readonly Guid _userId;
-
-        public UserService(Guid userId)
+        public UserService()
         {
-            _userId = userId;
         }
 
             public bool CreateUser(UserCreate model)

@@ -19,6 +19,8 @@ namespace ToolChest_WebAPI.Controllers
         private RentalService CreateRentalService()
         {
             //use built in classes and methods to get user id
+            
+            // we no longer need this
             var userId = Guid.Parse(User.Identity.GetUserId());
 
             //now create the rental service
