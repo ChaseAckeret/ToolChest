@@ -15,7 +15,7 @@ namespace ToolChest_Service
             var entity =
                 new OwnerRating()
                 {
-                    OwnerRatingId = model.OwnerRatingId,
+                    FKOwnerID = model.OwnerId,
                     Price = model.Price,
                     Availability = model.Availability,
                     Timeliness = model.Timeliness

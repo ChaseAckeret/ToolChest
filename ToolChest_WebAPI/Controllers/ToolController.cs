@@ -30,7 +30,10 @@ namespace ToolChest_WebAPI.Controllers
         }
         private ToolService CreateToolService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            // this is the userID for the person initiating the Post
+
+            //var userId = Guid.Parse(User.Identity.GetUserId());           
+            string userId = User.Identity.GetUserId();
             var ToolService = new ToolService();
             return ToolService;
         }
@@ -39,7 +42,7 @@ namespace ToolChest_WebAPI.Controllers
         {
 
             ToolService toolService = CreateToolService();
-            var tool = toolService.GetToolByID(id);
+            var tool = toolService.GetFullToolDetailByID(id);
             return Ok(tool);
         }
 

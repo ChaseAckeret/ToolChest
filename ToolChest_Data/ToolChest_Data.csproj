@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -145,35 +148,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
     <Compile Include="CustomerRating.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202102170308312_InitialCreate.cs" />
-    <Compile Include="Migrations\202102170308312_InitialCreate.Designer.cs">
-      <DependentUpon>202102170308312_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202102272049272_GUIDkey.cs" />
+    <Compile Include="Migrations\202102272049272_GUIDkey.designer.cs">
+      <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102190241360_Addedtoolentities.cs" />
-    <Compile Include="Migrations\202102190241360_Addedtoolentities.Designer.cs">
-      <DependentUpon>202102190241360_Addedtoolentities.cs</DependentUpon>
+    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.cs" />
+    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.designer.cs">
+      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102240146598_RentalKeyAdded.cs" />
-    <Compile Include="Migrations\202102240146598_RentalKeyAdded.Designer.cs">
-      <DependentUpon>202102240146598_RentalKeyAdded.cs</DependentUpon>
+    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.cs" />
+    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.designer.cs">
+      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102240537078_addedFKtoCatalogue.cs" />
-    <Compile Include="Migrations\202102240537078_addedFKtoCatalogue.Designer.cs">
-      <DependentUpon>202102240537078_addedFKtoCatalogue.cs</DependentUpon>
+    <Compile Include="Migrations\202102280040191_removedownercustomerflags.cs" />
+    <Compile Include="Migrations\202102280040191_removedownercustomerflags.designer.cs">
+      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102240620486_addedsetterstoratings.cs" />
-    <Compile Include="Migrations\202102240620486_addedsetterstoratings.Designer.cs">
-      <DependentUpon>202102240620486_addedsetterstoratings.cs</DependentUpon>
+    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.cs" />
+    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.designer.cs">
+      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102241359177_removedsetfromtooltool.cs" />
-    <Compile Include="Migrations\202102241359177_removedsetfromtooltool.Designer.cs">
-      <DependentUpon>202102241359177_removedsetfromtooltool.cs</DependentUpon>
+    <Compile Include="Migrations\202102280316197_AddedRentalTable.cs" />
+    <Compile Include="Migrations\202102280316197_AddedRentalTable.designer.cs">
+      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Owner.cs" />
     <Compile Include="OwnerRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receipt.cs" />
@@ -182,30 +183,39 @@
     <Compile Include="Tool.cs" />
     <Compile Include="ToolCatalogItem.cs" />
     <Compile Include="ToolRating.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102170308312_InitialCreate.resx">
-      <DependentUpon>202102170308312_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102272049272_GUIDkey.resx">
+      <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102190241360_Addedtoolentities.resx">
-      <DependentUpon>202102190241360_Addedtoolentities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102272347094_GRefactorUsersTable.resx">
+      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102240146598_RentalKeyAdded.resx">
-      <DependentUpon>202102240146598_RentalKeyAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102280031036_AddedOwnerCustomerFlags.resx">
+      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102240537078_addedFKtoCatalogue.resx">
-      <DependentUpon>202102240537078_addedFKtoCatalogue.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102280040191_removedownercustomerflags.resx">
+      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102240620486_addedsetterstoratings.resx">
-      <DependentUpon>202102240620486_addedsetterstoratings.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102280203047_changedkeysonownerrating.resx">
+      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102241359177_removedsetfromtooltool.resx">
-      <DependentUpon>202102241359177_removedsetfromtooltool.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102280316197_AddedRentalTable.resx">
+      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

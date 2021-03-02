@@ -8,5 +8,8 @@ namespace ToolChest_Models
 {
     public class ReceiptCreate
     {
+
+        public int RentedTool { get; set; }
+        public int CustomerID { get; set; }
     }
 }

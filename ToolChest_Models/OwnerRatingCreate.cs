@@ -8,7 +8,7 @@ namespace ToolChest_Models
 {
     public class OwnerRatingCreate
     {
-        public int OwnerRatingId { get; set; }
+        public int OwnerId { get; set; }
 
         public int Price { get; set; }
 
