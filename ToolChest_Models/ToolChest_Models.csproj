@@ -54,16 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerList.cs" />
     <Compile Include="OwnerList.cs" />
-    <Compile Include="OwnerListItem.cs" />
     <Compile Include="ToolDetails.cs" />
-    <Compile Include="CustomerCreate.cs" />
-    <Compile Include="CustomerEdit.cs" />
-    <Compile Include="CustomerListItem.cs" />
     <Compile Include="CustomerRatingCreate.cs" />
     <Compile Include="CustomerRatingListItem.cs" />
-    <Compile Include="OwnerCreate.cs" />
-    <Compile Include="OwnerEdit.cs" />
     <Compile Include="OwnerRatingCreate.cs" />
     <Compile Include="OwnerRatingListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

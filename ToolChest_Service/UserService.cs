@@ -17,32 +17,32 @@ namespace ToolChest_Service
             _userId = userId;
         }
 
-            public bool CreateUser(UserCreate model)
-            {
-                var entity =
-                    new User()
-                    {
-                        FName = model.FName,
-                        LName = model.LName,
-                        StreetAddress = model.StreetAddress,
-                        City = model.City,
-                        State = model.State,
-                        Zip = model.Zip,
-                        CreatedUtc = DateTimeOffset.Now,
-                        //IsOwner = false,
-                        //IsCustomer = false
-                    };
-
-                using (var ctx = new ApplicationDbContext())
-                {
-                    ctx.Users.Add(entity);
-                    return ctx.SaveChanges() == 1;
-                }
-            }
-
-        public IEnumerable<OwnerListItem> GetAllOwners()
+        public bool CreateUser(UserCreate model)
         {
-            List<OwnerListItem> returnlist = new List<OwnerListItem>();
+            var entity =
+                new User()
+                {
+                    FName = model.FName,
+                    LName = model.LName,
+                    StreetAddress = model.StreetAddress,
+                    City = model.City,
+                    State = model.State,
+                    Zip = model.Zip,
+                    CreatedUtc = DateTimeOffset.Now,
+                    //IsOwner = false,
+                    //IsCustomer = false
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Users.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<OwnerList> GetAllOwners()
+        {
+            List<OwnerList> returnlist = new List<OwnerList>();
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -57,17 +57,44 @@ namespace ToolChest_Service
                                     UserID = e.UserID,
                                 }
                         );
-                
+
                 foreach (UserKeyList results in query)
                 {
-                    returnlist.Add(GetOwnerDetailID(results.UserID));
+                    returnlist.Add(GetOwnerDetailByID(results.UserID));
                 }
 
                 return returnlist;
             }
         }
 
-        public OwnerListItem GetOwnerDetailID(int ownerID)
+        public IEnumerable<CustomerList> GetAllCustomers()
+        {
+            List<CustomerList> returnlist = new List<CustomerList>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Users
+                        .Where(e => e.Tools.Count >= 1) //Change to Rentals
+                        .Select(
+                            e =>
+                                new UserKeyList
+                                {
+                                    UserID = e.UserID,
+                                }
+                        );
+
+                foreach (UserKeyList results in query)
+                {
+                    returnlist.Add(GetCustomerDetailByID(results.UserID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        public OwnerList GetOwnerDetailByID(int ownerID)
         {
             ToolService toolService = new ToolService();
 
@@ -79,7 +106,7 @@ namespace ToolChest_Service
                         .Users
                         .Single(e => e.UserID == ownerID);
                 return
-                   new OwnerListItem
+                   new OwnerList
                    {
                        UserID = entity.UserID,
                        FName = entity.FName,
@@ -96,5 +123,34 @@ namespace ToolChest_Service
 
             }
         }
-    }
+
+        public CustomerList GetCustomerDetailByID(int customerId)
+        {
+            RentalService rentalService = new RentalService();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.UserID == customerId);
+                return
+                    new CustomerList
+                    {
+                        UserID = entity.UserID,
+                        FName = entity.FName,
+                        LName = entity.LName,
+                        StreetAddress = entity.StreetAddress,
+                        City = entity.City,
+                        State = entity.State,
+                        Zip = entity.Zip,
+                        //Rentals = rentalService.GetRentalByCustomerID(customerId),
+                        EaseRating=entity.EaseRating,
+                        CareRating=entity.CareRating,
+                        TimelinessAsCustomerRating=entity.TimelinessAsCustomerRating
+                    };
+            }
+        }
+    }    
 }
+
