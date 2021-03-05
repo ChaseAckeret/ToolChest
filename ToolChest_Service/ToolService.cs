@@ -80,7 +80,7 @@ namespace ToolChest_Service
             }
         }
 
-        public ToolListItem GetToolByID(int toolID)
+        public ToolListItem GetSingleToolByID(int toolID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -161,7 +161,7 @@ namespace ToolChest_Service
                         );
                 foreach (ToolListItem result in query)
                 {
-                    returnlist.Add(GetToolByID(result.ToolID));
+                    returnlist.Add(GetSingleToolByID(result.ToolID));
                 }
 
                 return returnlist;
@@ -189,7 +189,7 @@ namespace ToolChest_Service
                         );
                 foreach (ToolListItem result in query)
                 {
-                    returnlist.Add(GetToolByID(result.ToolID));
+                    returnlist.Add(GetSingleToolByID(result.ToolID));
                 }
 
                 return returnlist;

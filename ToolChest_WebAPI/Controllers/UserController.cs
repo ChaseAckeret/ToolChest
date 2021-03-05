@@ -32,9 +32,12 @@ namespace ToolChest_WebAPI.Controllers
                 var owners = userService.GetAllOwners();
                 return Ok(owners);
             }
-
+            if (which == "Customers")
+            {
+                var owners = userService.GetAllCustomers();
+                return Ok(owners);
+            }
             //
-            //GetAllCustomers goes here
 
             return Ok();
 

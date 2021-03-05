@@ -25,6 +25,7 @@ namespace ToolChest_Data
         [ForeignKey("CustomerID")]
         public int CustomerId { get; set; }
         public virtual User CustomerID { get; set; }
+        //The above should be:         public virtual User Customer { get; set; }
 
         //public int RecieptId { get; set; }
         // future feature
