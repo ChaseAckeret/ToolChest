@@ -36,7 +36,83 @@ namespace ToolChest_Service
 
         }//end of method CreateRental
 
+        public IEnumerable<RentalListItem> GetRentalByCustomerID(int customerID)
 
+        {
+            List<RentalListItem> returnlist = new List<RentalListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Rentals
+                        .Where(e => e.CustomerId == customerID)
+                        .Select(
+                            e =>
+                                new RentalListItem
+                                {
+                                    RentalID = e.RentalId,
+                                }
+                        );
+                foreach (RentalListItem result in query)
+                {
+                    returnlist.Add(GetSingleRentalByID(result.RentalID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        public IEnumerable<RentalListItem> GetRentalByUserID(int userID)
+
+        {
+            List<RentalListItem> returnlist = new List<RentalListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Rentals
+                        .Where(e => e.CustomerId == userID || e.Tool.OwnerID == userID)
+                        .Select(
+                            e =>
+                                new RentalListItem
+                                {
+                                    RentalID = e.RentalId,
+                                }
+                        );
+                foreach (RentalListItem result in query)
+                {
+                    returnlist.Add(GetSingleRentalByID(result.RentalID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        public RentalListItem GetSingleRentalByID(int rentalID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Rentals
+                        .Single(e => e.RentalId == rentalID);
+                return
+                   new RentalListItem
+                   {
+                       RentalID = entity.RentalId,
+                       OwnerLName = entity.Tool.Owner.LName,
+                       OnwerFName = entity.Tool.Owner.FName,
+                       CustomerLName = entity.CustomerID.LName,
+                       CustomerFName = entity.CustomerID.FName,
+                       ToolShortDescript = entity.Tool.ToolCatalogItem.ShortDescription,
+                       ScheduledStartDate = entity.ScheduledStartDate,
+                       ScheduledEndDate = entity.ScheduledEndDate
+                   };
+
+            }
+        }
 
     }//end of class RentalService
 }

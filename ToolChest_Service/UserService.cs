@@ -76,7 +76,7 @@ namespace ToolChest_Service
                 var query =
                     ctx
                         .Users
-                        .Where(e => e.Tools.Count >= 1) //Change to Rentals
+                        .Where(e => e.Rentals.Count >= 1) 
                         .Select(
                             e =>
                                 new UserKeyList
@@ -144,7 +144,7 @@ namespace ToolChest_Service
                         City = entity.City,
                         State = entity.State,
                         Zip = entity.Zip,
-                        //Rentals = rentalService.GetRentalByCustomerID(customerId),
+                        Rentals = rentalService.GetRentalByCustomerID(customerId),
                         EaseRating=entity.EaseRating,
                         CareRating=entity.CareRating,
                         TimelinessAsCustomerRating=entity.TimelinessAsCustomerRating
