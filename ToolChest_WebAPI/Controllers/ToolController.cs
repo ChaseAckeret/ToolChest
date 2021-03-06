@@ -44,6 +44,14 @@ namespace ToolChest_WebAPI.Controllers
             return Ok(tool);
         }
 
+        public IHttpActionResult Get(int type, int zip)
+        {
+
+            ToolService toolService = CreateToolService();
+            var tool = toolService.GetToolsByTypeAndZip(type, zip);
+            return Ok(tool);
+        }
+
         public IHttpActionResult GetAllTools()
         {
 
