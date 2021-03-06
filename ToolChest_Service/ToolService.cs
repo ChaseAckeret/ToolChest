@@ -13,11 +13,11 @@ namespace ToolChest_Service
 
     {
         //private readonly Guid _userId;
- //       private readonly String _userId;
+        //       private readonly String _userId;
 
         public ToolService()
         {
- //           _userId = userId;
+            //           _userId = userId;
         }
         public bool CreateTool(ToolCreate model)
         {
@@ -32,7 +32,7 @@ namespace ToolChest_Service
                     DailyRate = model.DailyRate,
                     ToolCondition = model.ToolCondition,
                     ToolCatalogItemID = model.ToolCatalogItemID,
-                   
+
                 };
 
                 //entity.Owner.IsOwner = true;
@@ -106,6 +106,82 @@ namespace ToolChest_Service
                        ConditionRating = entity.ConditionRating
                    };
 
+            }
+        }
+
+        public bool EditCatalogItem(int toolCatalogueItemId, ToolCatalogItemCreate toolCatalogItem)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .ToolCatalogItems
+                        .Single(e => e.ToolCatalogItemID == toolCatalogueItemId);
+
+                if (toolCatalogItem.LongDescription != null)
+                    entity.LongDescription = toolCatalogItem.LongDescription;
+                if (toolCatalogItem.Brand != null)
+                    entity.Brand = toolCatalogItem.Brand;
+                if (toolCatalogItem.PowerSource != null)
+                    entity.PowerSource = toolCatalogItem.PowerSource;
+                if (toolCatalogItem.Model != null)
+                    entity.Model = toolCatalogItem.Model;
+
+                return ctx.SaveChanges() == 1;
+
+            }
+        }
+
+        public bool EditToolItem(int toolEditId, ToolEdit toolEdit)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Tools
+                        .Single(e => e.ToolID == toolEditId);
+
+                entity.DailyRate = toolEdit.DailyRate;
+                entity.HourlyRate = toolEdit.HourlyRate;
+                entity.ToolCondition = toolEdit.ToolCondition;
+
+                bool returnbool = false;
+                int result = ctx.SaveChanges();
+                if (result == 1) returnbool = true;
+                return returnbool;
+
+            }
+        }
+
+        public bool DeleteTool(int toolId)
+        {
+            var rentalservice = new RentalService();
+
+            // null add th etoolID's for any rentals with this tool ID
+
+            rentalservice.NullToolIDForRentalByToolID(toolId);
+
+            // now remove those tool rows
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Tools.Single(e => e.ToolID == toolId);
+
+                ctx.Tools.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteToolRating(int toolRatingId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.ToolRatings.Single(e => e.ToolRatingID == toolRatingId);
+
+                ctx.ToolRatings.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -196,5 +272,33 @@ namespace ToolChest_Service
             }
         }
 
+
+        //public IEnumerable<ToolCatalogItem> GetAllToolCatalogueItems()
+
+        //{
+        //    List<ToolCatalogItem> returnlist = new List<ToolCatalogItem>();
+
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //                .ToolCatalogItems
+        //                .Where(e => e.ToolCatalogItemID > 0)
+        //                .Select(
+        //                    e =>
+        //                        new ToolListItem
+        //                        {
+        //                            ToolCatalogueID = e.
+
+        //                        }
+        //                );
+        //        foreach (ToolListItem result in query)
+        //        {
+        //            returnlist.Add(GetSingleToolByID(result.ToolID));
+        //        }
+
+        //        return returnlist;
+        //    }
     }
 }
+

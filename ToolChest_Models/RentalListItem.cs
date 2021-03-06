@@ -16,6 +16,8 @@ namespace ToolChest_Models
         public string CustomerLName { get; set; }
         public string CustomerFName { get; set; }
 
+        public int? ToolID { get; set; }
+
         public String ToolShortDescript { get; set; }
 
         public DateTimeOffset ScheduledStartDate { get; set; }

@@ -11,7 +11,6 @@ namespace ToolChest_Service
     public class RentalService
     {
 
-
         //method to create a rental by passing in the required information
         public bool CreateRental(RentalCreate model)
         {
@@ -89,6 +88,71 @@ namespace ToolChest_Service
                 return returnlist;
             }
         }
+        public IEnumerable<RentalListItem> GetRentalByToolID(int toolID)
+
+        {
+            List<RentalListItem> returnlist = new List<RentalListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Rentals
+                        .Where(e => e.ToolId == toolID)
+                        .Select(
+                            e =>
+                                new RentalListItem
+                                {
+                                    RentalID = e.RentalId,
+                                }
+                        );
+                foreach (RentalListItem result in query)
+                {
+                    returnlist.Add(GetSingleRentalByID(result.RentalID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        public bool NullToolIDForRentalByToolID(int toolID)
+
+        {
+            List<RentalListItem> returnlist = new List<RentalListItem>();
+
+            bool success = false;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var resultquery =
+                    ctx
+                        .Rentals
+                        .Where(e => e.ToolId == toolID)
+                        .Select(
+                            e =>
+                                new RentalListItem
+                                {
+                                    RentalID = e.RentalId,
+                                }
+                        );
+                resultquery.ToList();
+
+
+                foreach (RentalListItem result in resultquery)
+                {
+                    var query =
+                        ctx
+                            .Rentals
+                            .Single(e => e.RentalId == result.RentalID);
+                    query.ToolId = null;
+                    success = ctx.SaveChanges() == 1;
+                }
+                
+                return success;
+            }
+        }
+
+
 
         public RentalListItem GetSingleRentalByID(int rentalID)
         {
@@ -106,6 +170,7 @@ namespace ToolChest_Service
                        OnwerFName = entity.Tool.Owner.FName,
                        CustomerLName = entity.CustomerID.LName,
                        CustomerFName = entity.CustomerID.FName,
+                       ToolID = entity.ToolId,
                        ToolShortDescript = entity.Tool.ToolCatalogItem.ShortDescription,
                        ScheduledStartDate = entity.ScheduledStartDate,
                        ScheduledEndDate = entity.ScheduledEndDate
@@ -113,6 +178,7 @@ namespace ToolChest_Service
 
             }
         }
+
 
     }//end of class RentalService
 }

@@ -18,9 +18,9 @@ namespace ToolChest_WebAPI.Controllers
 
             // no longer need userID
 
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            //var userId = Guid.Parse(User.Identity.GetUserId());
             //string userId = User.Identity.GetUserId();
-            var userService = new UserService(userId);
+            var userService = new UserService();
             return userService;
         }
 
@@ -43,6 +43,7 @@ namespace ToolChest_WebAPI.Controllers
 
 
         }
+
 
         public IHttpActionResult Post(UserCreate User)
         {

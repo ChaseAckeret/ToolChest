@@ -150,29 +150,9 @@
   <ItemGroup>
     <Compile Include="CustomerRating.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202102272049272_GUIDkey.cs" />
-    <Compile Include="Migrations\202102272049272_GUIDkey.designer.cs">
-      <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.cs" />
-    <Compile Include="Migrations\202102272347094_GRefactorUsersTable.designer.cs">
-      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.cs" />
-    <Compile Include="Migrations\202102280031036_AddedOwnerCustomerFlags.designer.cs">
-      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102280040191_removedownercustomerflags.cs" />
-    <Compile Include="Migrations\202102280040191_removedownercustomerflags.designer.cs">
-      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.cs" />
-    <Compile Include="Migrations\202102280203047_changedkeysonownerrating.designer.cs">
-      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102280316197_AddedRentalTable.cs" />
-    <Compile Include="Migrations\202102280316197_AddedRentalTable.designer.cs">
-      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
+    <Compile Include="Migrations\202103061659506_nulltoolidinrentalbeforedelete.cs" />
+    <Compile Include="Migrations\202103061659506_nulltoolidinrentalbeforedelete.designer.cs">
+      <DependentUpon>202103061659506_nulltoolidinrentalbeforedelete.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OwnerRating.cs" />
@@ -190,23 +170,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102272049272_GUIDkey.resx">
-      <DependentUpon>202102272049272_GUIDkey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102272347094_GRefactorUsersTable.resx">
-      <DependentUpon>202102272347094_GRefactorUsersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102280031036_AddedOwnerCustomerFlags.resx">
-      <DependentUpon>202102280031036_AddedOwnerCustomerFlags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102280040191_removedownercustomerflags.resx">
-      <DependentUpon>202102280040191_removedownercustomerflags.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102280203047_changedkeysonownerrating.resx">
-      <DependentUpon>202102280203047_changedkeysonownerrating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102280316197_AddedRentalTable.resx">
-      <DependentUpon>202102280316197_AddedRentalTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103061659506_nulltoolidinrentalbeforedelete.resx">
+      <DependentUpon>202103061659506_nulltoolidinrentalbeforedelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
