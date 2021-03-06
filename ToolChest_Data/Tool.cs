@@ -34,8 +34,9 @@ namespace ToolChest_Data
         public int ToolCatalogItemID { get; set; }
         public virtual ToolCatalogItem ToolCatalogItem { get; set; }
 
-        public virtual List<ToolRating> Ratings { get; set; } 
+        public virtual List<ToolRating> Ratings { get; set; }
 
+        public virtual List<Rental> Rentals { get; set; }
 
         public double ConditionRating
         {

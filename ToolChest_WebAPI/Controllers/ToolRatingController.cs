@@ -36,5 +36,16 @@ namespace ToolChest_WebAPI.Controllers
             return ToolService;
 
         }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateToolRatingService();
+
+            if (!service.DeleteToolRating(id))
+                return InternalServerError();
+
+            return Ok();
+        }
+
     }
 }

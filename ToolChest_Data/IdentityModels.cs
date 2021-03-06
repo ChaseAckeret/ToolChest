@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -55,6 +56,10 @@ namespace ToolChest_Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+            modelBuilder
+                .Entity<Tool>().HasOptional<List<Rental>>(r => r.Rentals)
+                .WithOptionalDependent()
+                .WillCascadeOnDelete(false);
         }
     }
 

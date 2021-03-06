@@ -23,11 +23,6 @@ namespace ToolChest_Data
 
         public virtual List<Tool> Tools { get; set; }
 
-
-
-        //public bool IsOwner { get; set; }
-
-
         public double PriceRating
         {
             get
