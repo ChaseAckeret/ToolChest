@@ -53,6 +53,16 @@ namespace ToolChest_WebAPI.Controllers
             return Ok(tool);
         }
 
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateToolCatalogueItemService();
+
+            if (!service.DeleteToolCatalogueItem(id))
+                return InternalServerError();
+
+            return Ok();
+        }
+
     }
 
 

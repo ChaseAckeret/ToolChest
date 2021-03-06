@@ -164,6 +164,32 @@ namespace ToolChest_Service
             }
         }
 
+        public IEnumerable<ToolListItem> GetToolsByTypeAndZip(int type, int zip)
+        {
+            List<ToolListItem> returnlist = new List<ToolListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Tools
+                        .Where(e => (int) e.ToolCatalogItem.Catagory == type && e.Owner.Zip == zip)
+                        .Select(
+                            e =>
+                                new ToolListItem
+                                {
+                                    ToolID = e.ToolID,
+
+                                }
+                        );
+                foreach (ToolListItem result in query)
+                {
+                    returnlist.Add(GetSingleToolByID(result.ToolID));
+                }
+
+                return returnlist;
+            }
+        }
         //
         // Tool Rating Methods
         //
@@ -322,6 +348,43 @@ namespace ToolChest_Service
 
                 return returnList;
             }
+        }
+
+        public bool DeleteToolCatalogueItem(int toolCatalogeItemToDelete)
+        {
+
+            bool success = false;
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var resultquery =
+                ctx
+                    .Tools
+                    .Where(e => e.ToolCatalogItemID == toolCatalogeItemToDelete)
+                    .Select(
+                        e =>
+                            new ToolListItem
+                            {
+                                ToolID = e.ToolID,
+                            }
+                    );
+
+                foreach (ToolListItem results in resultquery)
+                {
+                    success = DeleteTool(results.ToolID);
+                }
+
+            }
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.ToolCatalogItems.Single(e => e.ToolCatalogItemID == toolCatalogeItemToDelete);
+
+                ctx.ToolCatalogItems.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+
         }
     }
 }
