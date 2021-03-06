@@ -12,13 +12,15 @@ namespace ToolChest_Service
 
 
     {
-        //private readonly Guid _userId;
- //       private readonly String _userId;
 
         public ToolService()
         {
- //           _userId = userId;
         }
+
+        // 
+        // Tool methods
+        //
+
         public bool CreateTool(ToolCreate model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -32,7 +34,7 @@ namespace ToolChest_Service
                     DailyRate = model.DailyRate,
                     ToolCondition = model.ToolCondition,
                     ToolCatalogItemID = model.ToolCatalogItemID,
-                   
+
                 };
 
                 //entity.Owner.IsOwner = true;
@@ -40,47 +42,7 @@ namespace ToolChest_Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool CreateToolRating(ToolRatingCreate model)
-        {
-            var entity =
-                new ToolRating()
-                {
-
-                    FKToolID = model.ToolID,
-                    Accuracy = model.Accuracy,
-                    Condition = model.Condition,
-                    Usability = model.Usability
-                };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.ToolRatings.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool CreateCatalogItem(ToolCatalogItemCreate model)
-        {
-            var entity =
-                new ToolCatalogItem()
-                {
-
-                    Catagory = model.Catagory,
-                    ShortDescription = model.ShortDescription,
-                    LongDescription = model.LongDescription,
-                    Brand = model.Brand,
-                    PowerSource = model.PowerSource,
-                    Model = model.Model
-                };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.ToolCatalogItems.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public ToolListItem GetToolByID(int toolID)
+        public ToolListItem GetSingleToolByID(int toolID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -108,7 +70,133 @@ namespace ToolChest_Service
 
             }
         }
+        public bool EditToolItem(int toolEditId, ToolEdit toolEdit)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Tools
+                        .Single(e => e.ToolID == toolEditId);
 
+                entity.DailyRate = toolEdit.DailyRate;
+                entity.HourlyRate = toolEdit.HourlyRate;
+                entity.ToolCondition = toolEdit.ToolCondition;
+
+                bool returnbool = false;
+                int result = ctx.SaveChanges();
+                if (result == 1) returnbool = true;
+                return returnbool;
+
+            }
+        }
+        public bool DeleteTool(int toolId)
+        {
+            var rentalservice = new RentalService();
+
+            // null add th etoolID's for any rentals with this tool ID
+
+            rentalservice.NullToolIDForRentalByToolID(toolId);
+
+            // now remove those tool rows
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Tools.Single(e => e.ToolID == toolId);
+
+                ctx.Tools.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public IEnumerable<ToolListItem> GetAllTools()
+
+        {
+            List<ToolListItem> returnlist = new List<ToolListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Tools
+                        .Where(e => e.ToolID > 0)
+                        .Select(
+                            e =>
+                                new ToolListItem
+                                {
+                                    ToolID = e.ToolID,
+
+                                }
+                        );
+                foreach (ToolListItem result in query)
+                {
+                    returnlist.Add(GetSingleToolByID(result.ToolID));
+                }
+
+                return returnlist;
+            }
+        }
+        public IEnumerable<ToolListItem> GetToolsByOwnerID(int ownerID)
+
+        {
+            List<ToolListItem> returnlist = new List<ToolListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Tools
+                        .Where(e => e.OwnerID == ownerID)
+                        .Select(
+                            e =>
+                                new ToolListItem
+                                {
+                                    ToolID = e.ToolID,
+
+                                }
+                        );
+                foreach (ToolListItem result in query)
+                {
+                    returnlist.Add(GetSingleToolByID(result.ToolID));
+                }
+
+                return returnlist;
+            }
+        }
+
+        //
+        // Tool Rating Methods
+        //
+
+        public bool CreateToolRating(ToolRatingCreate model)
+        {
+            var entity =
+                new ToolRating()
+                {
+
+                    FKToolID = model.ToolID,
+                    Accuracy = model.Accuracy,
+                    Condition = model.Condition,
+                    Usability = model.Usability
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.ToolRatings.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool DeleteToolRating(int toolRatingId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.ToolRatings.Single(e => e.ToolRatingID == toolRatingId);
+
+                ctx.ToolRatings.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
         public ToolDetails GetFullToolDetailByID(int toolID)
         {
             using (var ctx = new ApplicationDbContext())
@@ -140,61 +228,101 @@ namespace ToolChest_Service
             }
         }
 
-        public IEnumerable<ToolListItem> GetAllTools()
+        //
+        // Tool Catalogue Methods
+        //
+
+        public bool EditCatalogItem(int toolCatalogueItemId, ToolCatalogItemCreate toolCatalogItem)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .ToolCatalogItems
+                        .Single(e => e.ToolCatalogItemID == toolCatalogueItemId);
+
+                if (toolCatalogItem.LongDescription != null)
+                    entity.LongDescription = toolCatalogItem.LongDescription;
+                if (toolCatalogItem.Brand != null)
+                    entity.Brand = toolCatalogItem.Brand;
+                if (toolCatalogItem.PowerSource != null)
+                    entity.PowerSource = toolCatalogItem.PowerSource;
+                if (toolCatalogItem.Model != null)
+                    entity.Model = toolCatalogItem.Model;
+
+                return ctx.SaveChanges() == 1;
+
+            }
+        }
+        public bool CreateCatalogItem(ToolCatalogItemCreate model)
+        {
+            var entity =
+                new ToolCatalogItem()
+                {
+
+                    Catagory = model.Catagory,
+                    ShortDescription = model.ShortDescription,
+                    LongDescription = model.LongDescription,
+                    Brand = model.Brand,
+                    PowerSource = model.PowerSource,
+                    Model = model.Model
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.ToolCatalogItems.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public ToolCatalogueItemList GetSingleToolCatalogueItemByID(int toolCatalogueItemID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .ToolCatalogItems
+                        .Single(e => e.ToolCatalogItemID == toolCatalogueItemID);
+                return
+                   new ToolCatalogueItemList
+                   {
+                       ToolCatalogueItemID = entity.ToolCatalogItemID,
+                       Catagory = entity.Catagory,
+                       ShortDescription = entity.ShortDescription,
+                       LongDescription = entity.LongDescription,
+                       Brand = entity.Brand,
+                       PowerSource = entity.PowerSource,
+                       Model = entity.Model
+                   };
+
+            }
+        }
+        public IEnumerable<ToolCatalogueItemList> GetAllToolCatalogueItems()
 
         {
-            List<ToolListItem> returnlist = new List<ToolListItem>();
+            List<ToolCatalogueItemList> returnList = new List<ToolCatalogueItemList>();
 
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Tools
-                        .Where(e => e.ToolID > 0)
+                        .ToolCatalogItems
+                        .Where(e => e.ToolCatalogItemID > 0)
                         .Select(
                             e =>
-                                new ToolListItem
+                                new ToolCatalogueItemList
                                 {
-                                    ToolID = e.ToolID,
-
+                                    ToolCatalogueItemID = e.ToolCatalogItemID
                                 }
                         );
-                foreach (ToolListItem result in query)
+                foreach (ToolCatalogueItemList result in query)
                 {
-                    returnlist.Add(GetToolByID(result.ToolID));
+                    returnList.Add(GetSingleToolCatalogueItemByID(result.ToolCatalogueItemID));
                 }
 
-                return returnlist;
+                return returnList;
             }
         }
-
-        public IEnumerable<ToolListItem> GetToolsByOwnerID(int ownerID)
-
-        {
-            List<ToolListItem> returnlist = new List<ToolListItem>();
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Tools
-                        .Where(e => e.OwnerID == ownerID)
-                        .Select(
-                            e =>
-                                new ToolListItem
-                                {
-                                    ToolID = e.ToolID,
-
-                                }
-                        );
-                foreach (ToolListItem result in query)
-                {
-                    returnlist.Add(GetToolByID(result.ToolID));
-                }
-
-                return returnlist;
-            }
-        }
-
     }
 }
+

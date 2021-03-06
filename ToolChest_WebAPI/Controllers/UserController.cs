@@ -16,12 +16,7 @@ namespace ToolChest_WebAPI.Controllers
     {
         private UserService CreateUserService()
         {
-
-            // no longer need userID
-
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            //string userId = User.Identity.GetUserId();
-            var userService = new UserService(userId);
+            var userService = new UserService();
             return userService;
         }
 
@@ -33,14 +28,18 @@ namespace ToolChest_WebAPI.Controllers
                 var owners = userService.GetAllOwners();
                 return Ok(owners);
             }
-
+            if (which == "Customers")
+            {
+                var owners = userService.GetAllCustomers();
+                return Ok(owners);
+            }
             //
-            //GetAllCustomers goes here
 
             return Ok();
 
 
         }
+
 
         public IHttpActionResult Post(UserCreate User)
         {

@@ -12,9 +12,14 @@ namespace ToolChest_Service
     {
         /*private readonly Guid _userId;
 
-        public UserService(Guid userId)
+        //public UserService(Guid userId)
+        //{
+        //    _userId = userId;
+        //}
+
+        public UserService()
         {
-            _userId = userId;
+           // _userId = userId;
         }
         */
         public bool CreateUser(UserCreate model)
@@ -76,7 +81,7 @@ namespace ToolChest_Service
                 var query =
                     ctx
                         .Users
-                        .Where(e => e.Tools.Count >= 1) //Change to Rentals
+                        .Where(e => e.Rentals.Count >= 1) 
                         .Select(
                             e =>
                                 new UserKeyList
@@ -144,10 +149,10 @@ namespace ToolChest_Service
                         City = entity.City,
                         State = entity.State,
                         Zip = entity.Zip,
-                        //Rentals = rentalService.GetRentalByCustomerID(customerId),
-                        EaseRating = entity.EaseRating,
-                        CareRating = entity.CareRating,
-                        TimelinessAsCustomerRating = entity.TimelinessAsCustomerRating
+                        Rentals = rentalService.GetRentalByCustomerID(customerId),
+                        EaseRating=entity.EaseRating,
+                        CareRating=entity.CareRating,
+                        TimelinessAsCustomerRating=entity.TimelinessAsCustomerRating
                     };
             }
         }

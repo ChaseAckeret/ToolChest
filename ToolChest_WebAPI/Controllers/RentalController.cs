@@ -63,13 +63,19 @@ namespace ToolChest_WebAPI.Controllers
 
 
 
-            //}//end of Post method
+        }//end of Post method
+
+        public IHttpActionResult Get(int userID)
+        {
+
+            RentalService rentalService = CreateRentalService();
+            var rentalsbyID = rentalService.GetRentalByUserID(userID);
+            return Ok(rentalsbyID);
+        }
 
 
+    }//end of class RentalController
 
-
-        }//end of class RentalController
-    }
 }
 
 

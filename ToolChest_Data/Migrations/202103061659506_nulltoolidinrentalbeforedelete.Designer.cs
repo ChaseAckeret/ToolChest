@@ -7,13 +7,13 @@ namespace ToolChest_Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class removedownercustomerflags : IMigrationMetadata
+    public sealed partial class nulltoolidinrentalbeforedelete : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(removedownercustomerflags));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(nulltoolidinrentalbeforedelete));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102280040191_removedownercustomerflags"; }
+            get { return "202103061659506_nulltoolidinrentalbeforedelete"; }
         }
         
         string IMigrationMetadata.Source

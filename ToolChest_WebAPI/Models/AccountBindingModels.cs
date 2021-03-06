@@ -49,20 +49,6 @@ namespace ToolChest_WebAPI.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        public string FName { get; set; }
-        [Required]
-        public string LName { get; set; }
-        [Required]
-        public string StreetAddress { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string State { get; set; }
-        [Required]
-        public int Zip { get; set; }
-        //public DateTime DOB { get; set; }
-
     }
 
     public class RegisterExternalBindingModel

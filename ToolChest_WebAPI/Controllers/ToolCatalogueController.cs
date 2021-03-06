@@ -28,15 +28,32 @@ namespace ToolChest_WebAPI.Controllers
         }
         private ToolService CreateToolCatalogueItemService()
         {
-
-            
-            // this is the userID for the person initiating the Post
-
-            //var userId = Guid.Parse(User.Identity.GetUserId());           
-            string userId = User.Identity.GetUserId();
             var ToolService = new ToolService();
             return ToolService;
 
         }
+        public IHttpActionResult Put(int toolCatalogueItemId, ToolCatalogItemCreate toolCatalogeItem)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateToolCatalogueItemService();
+
+            if (!service.EditCatalogItem(toolCatalogueItemId, toolCatalogeItem))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult GetAllToolsCatalogueItems()
+        {
+
+            ToolService toolService = CreateToolCatalogueItemService();
+            var tool = toolService.GetAllToolCatalogueItems();
+            return Ok(tool);
+        }
+
     }
+
+
 }

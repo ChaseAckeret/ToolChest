@@ -17,14 +17,10 @@ namespace ToolChest_Data
         public int? ToolId { get; set; }
         public virtual Tool Tool { get; set; }
 
-
-        //[ForeignKey("OwnerID")]
-        //public int OwnerId { get; set; }
-        //public virtual User OwnerID { get; set; }
-
         [ForeignKey("CustomerID")]
         public int CustomerId { get; set; }
         public virtual User CustomerID { get; set; }
+        //The above should be:         public virtual User Customer { get; set; }
 
         //public int RecieptId { get; set; }
         // future feature
