@@ -120,22 +120,25 @@ namespace ToolChest_Service
         {
             List<RentalListItem> returnlist = new List<RentalListItem>();
 
+            var resultquery = GetRentalByToolID(toolID);
+
             bool success = false;
 
             using (var ctx = new ApplicationDbContext())
+
             {
-                var resultquery =
-                    ctx
-                        .Rentals
-                        .Where(e => e.ToolId == toolID)
-                        .Select(
-                            e =>
-                                new RentalListItem
-                                {
-                                    RentalID = e.RentalId,
-                                }
-                        );
-                resultquery.ToList();
+                //    var resultquery =
+                //        ctx
+                //            .Rentals
+                //            .Where(e => e.ToolId == toolID)
+                //            .Select(
+                //                e =>
+                //                    new RentalListItem
+                //                    {
+                //                        RentalID = e.RentalId,
+                //                    }
+                //            );
+                //    resultquery.ToList();
 
 
                 foreach (RentalListItem result in resultquery)
@@ -147,7 +150,7 @@ namespace ToolChest_Service
                     query.ToolId = null;
                     success = ctx.SaveChanges() == 1;
                 }
-                
+
                 return success;
             }
         }
@@ -162,19 +165,34 @@ namespace ToolChest_Service
                     ctx
                         .Rentals
                         .Single(e => e.RentalId == rentalID);
+
+                if (entity.ToolId != null)
+                {
+                    return
+                       new RentalListItem
+                       {
+                           RentalID = entity.RentalId,
+                           OwnerLName = entity.Tool.Owner.LName,
+                           OnwerFName = entity.Tool.Owner.FName,
+                           CustomerLName = entity.CustomerID.LName,
+                           CustomerFName = entity.CustomerID.FName,
+                           ToolID = entity.ToolId,
+                           ToolShortDescript = entity.Tool.ToolCatalogItem.ShortDescription,
+                           ScheduledStartDate = entity.ScheduledStartDate,
+                           ScheduledEndDate = entity.ScheduledEndDate
+                       };
+                }
                 return
-                   new RentalListItem
-                   {
-                       RentalID = entity.RentalId,
-                       OwnerLName = entity.Tool.Owner.LName,
-                       OnwerFName = entity.Tool.Owner.FName,
-                       CustomerLName = entity.CustomerID.LName,
-                       CustomerFName = entity.CustomerID.FName,
-                       ToolID = entity.ToolId,
-                       ToolShortDescript = entity.Tool.ToolCatalogItem.ShortDescription,
-                       ScheduledStartDate = entity.ScheduledStartDate,
-                       ScheduledEndDate = entity.ScheduledEndDate
-                   };
+                       new RentalListItem
+                       {
+                           RentalID = entity.RentalId,
+                           CustomerLName = entity.CustomerID.LName,
+                           CustomerFName = entity.CustomerID.FName,
+                           ToolID = entity.ToolId,
+                           ScheduledStartDate = entity.ScheduledStartDate,
+                           ScheduledEndDate = entity.ScheduledEndDate
+                       };
+
 
             }
         }

@@ -45,13 +45,13 @@ namespace ToolChest_WebAPI.Controllers
             return Ok();
         }
 
-        //public IHttpActionResult GetAllToolsCatalogueItems()
-        //{
+        public IHttpActionResult GetAllToolsCatalogueItems()
+        {
 
-        //    ToolService toolService = CreateToolCatalogueItemService();
-        //    var tool = toolService.GetAllToolCatalogueItems();
-        //    return Ok(tool);
-        //}
+            ToolService toolService = CreateToolCatalogueItemService();
+            var tool = toolService.GetAllToolCatalogueItems();
+            return Ok(tool);
+        }
 
     }
 
