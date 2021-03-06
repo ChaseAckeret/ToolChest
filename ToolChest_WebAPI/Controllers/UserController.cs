@@ -67,12 +67,17 @@ namespace ToolChest_WebAPI.Controllers
             return Ok();
         }
 
-        /*
+     
         public IHttpActionResult Delete(int id)
         {
             var service = CreateUserService();
+
+            if (!service.DeleteUser(id))
+                return InternalServerError();
+
+            return Ok();
         }
-        */
+  
     }
 
 }

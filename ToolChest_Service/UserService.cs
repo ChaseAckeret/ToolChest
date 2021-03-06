@@ -176,6 +176,21 @@ namespace ToolChest_Service
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteUser(int userId)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.UserID == userId);
+
+                ctx.Users.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
 

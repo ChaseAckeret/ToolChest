@@ -8,7 +8,7 @@ namespace ToolChest_Models
 {
     public class UserDetail
     {
-        public Guid UserID { get; set; }
+        public int UserID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string StreetAddress { get; set; }
