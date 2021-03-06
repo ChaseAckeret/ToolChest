@@ -33,5 +33,28 @@ namespace ToolChest_WebAPI.Controllers
             var ownerRatingService = new OwnerRatingService();
             return ownerRatingService;
         }
+
+        public IHttpActionResult Put(OwnerRatingEdit rating)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateOwnerRatingService();
+
+            if (!service.UpdateOwnerRating(rating))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateOwnerRatingService();
+
+            if (!service.DeleteOwnerRating(id))
+                return InternalServerError();
+
+            return Ok();
+        }
     }
 }

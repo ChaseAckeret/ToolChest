@@ -77,6 +77,8 @@
     <Compile Include="ToolListItem.cs" />
     <Compile Include="ToolRatingCreate.cs" />
     <Compile Include="UserCreate.cs" />
+    <Compile Include="UserDetail.cs" />
+    <Compile Include="UserEdit.cs" />
     <Compile Include="UserKeyList.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ToolChest_Data;
 using ToolChest_Models;
 using ToolChest_Service;
 
@@ -52,5 +53,31 @@ namespace ToolChest_WebAPI.Controllers
 
             return Ok();
         }
+
+        public IHttpActionResult Put(UserEdit user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateUserService();
+
+            if (!service.UpdateUser(user))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+     
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateUserService();
+
+            if (!service.DeleteUser(id))
+                return InternalServerError();
+
+            return Ok();
+        }
+  
     }
+
 }

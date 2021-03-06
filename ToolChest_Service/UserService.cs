@@ -10,7 +10,7 @@ namespace ToolChest_Service
 {
     public class UserService
     {
-        private readonly Guid _userId;
+        /*private readonly Guid _userId;
 
         //public UserService(Guid userId)
         //{
@@ -21,7 +21,7 @@ namespace ToolChest_Service
         {
            // _userId = userId;
         }
-
+        */
         public bool CreateUser(UserCreate model)
         {
             var entity =
@@ -156,6 +156,41 @@ namespace ToolChest_Service
                     };
             }
         }
-    }    
+
+        public bool UpdateUser(UserEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.UserID == model.UserId);
+
+                entity.FName = model.FName,
+                entity.LName=model.LName,
+                entity.StreetAddress=model.StreetAddress,
+                entity.City = model.City,
+                entity.State=model.State,
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.UserID == userId);
+
+                ctx.Users.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+    }
 }
 

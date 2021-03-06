@@ -21,13 +21,45 @@ namespace ToolChest_Service
                     Timeliness = model.Timeliness
                 };
 
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.OwnerRatings.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
 
 
+        }
+
+        public bool UpdateOwnerRating(OwnerRating model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .OwnerRatings
+                        .Single(e => e.OwnerRatingId == model.OwnerRatingId);
+
+                entity.Timeliness = model.Timeliness;
+                entity.Price = model.Price;
+                entity.Availability = model.Availability;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteOwnerRating(int ownerRatingId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .OwnerRatings
+                    .Single(e => e.OwnerRatingId == ownerRatingId);
+
+                ctx.OwnerRatings.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
         }
     }
 }

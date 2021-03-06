@@ -27,5 +27,37 @@ namespace ToolChest_Service
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool UpdateCustomerRating(CustomerRatingEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .CustomerRatings
+                        .Single(e => e.CustomerRatingId == model.CustomerRatingId);
+
+                entity.Timeliness = model.Timeliness,
+                entity.Care = model.Care;
+                entity.Ease = model.Ease;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteCustomerRating(int customerRatingId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .CustomerRatings
+                        .Single(e => e.CustomerRatingId == customerRatingId);
+
+                ctx.CustomerRatings.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
