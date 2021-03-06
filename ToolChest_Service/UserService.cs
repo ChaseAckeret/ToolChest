@@ -10,13 +10,13 @@ namespace ToolChest_Service
 {
     public class UserService
     {
-        private readonly Guid _userId;
+        /*private readonly Guid _userId;
 
         public UserService(Guid userId)
         {
             _userId = userId;
         }
-
+        */
         public bool CreateUser(UserCreate model)
         {
             var entity =
@@ -145,12 +145,32 @@ namespace ToolChest_Service
                         State = entity.State,
                         Zip = entity.Zip,
                         //Rentals = rentalService.GetRentalByCustomerID(customerId),
-                        EaseRating=entity.EaseRating,
-                        CareRating=entity.CareRating,
-                        TimelinessAsCustomerRating=entity.TimelinessAsCustomerRating
+                        EaseRating = entity.EaseRating,
+                        CareRating = entity.CareRating,
+                        TimelinessAsCustomerRating = entity.TimelinessAsCustomerRating
                     };
             }
         }
-    }    
+
+        public bool UpdateUser(UserEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Users
+                        .Single(e => e.UserID == model.UserId);
+
+                entity.FName = model.FName,
+                entity.LName=model.LName,
+                entity.StreetAddress=model.StreetAddress,
+                entity.City = model.City,
+                entity.State=model.State,
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+    }
 }
 
