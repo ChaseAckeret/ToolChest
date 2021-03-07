@@ -28,7 +28,7 @@ namespace ToolChest_Service
             }
         }
 
-        public bool UpdateCustomerRating(CustomerRatingEdit model)
+        public bool UpdateCustomerRating(CustomerRatingCreate model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -37,7 +37,7 @@ namespace ToolChest_Service
                         .CustomerRatings
                         .Single(e => e.CustomerRatingId == model.CustomerRatingId);
 
-                entity.Timeliness = model.Timeliness,
+                entity.Timeliness = model.Timeliness;
                 entity.Care = model.Care;
                 entity.Ease = model.Ease;
 

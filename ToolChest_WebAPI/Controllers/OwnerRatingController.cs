@@ -34,7 +34,7 @@ namespace ToolChest_WebAPI.Controllers
             return ownerRatingService;
         }
 
-        public IHttpActionResult Put(OwnerRatingEdit rating)
+        public IHttpActionResult Put(OwnerRatingCreate rating)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
