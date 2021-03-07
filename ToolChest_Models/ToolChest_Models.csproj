@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerList.cs" />
+    <Compile Include="CustomerRatingEdit.cs" />
     <Compile Include="OwnerList.cs" />
     <Compile Include="ToolCatalogueItemList.cs" />
     <Compile Include="ToolDetails.cs" />

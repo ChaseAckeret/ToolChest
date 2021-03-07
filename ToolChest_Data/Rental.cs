@@ -20,10 +20,11 @@ namespace ToolChest_Data
         [ForeignKey("CustomerID")]
         public int CustomerId { get; set; }
         public virtual User CustomerID { get; set; }
-        //The above should be:         public virtual User Customer { get; set; }
 
-        //public int RecieptId { get; set; }
-        // future feature
+        [ForeignKey("Receipt")]
+        public int? RecipetID { get; set; }
+
+        public virtual Receipt Receipt { get; set; }
 
         public DateTimeOffset ScheduledStartDate { get; set; }
         public DateTimeOffset ScheduledEndDate { get; set; }

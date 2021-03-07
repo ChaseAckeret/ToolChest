@@ -8,7 +8,7 @@ namespace ToolChest_Models
 {
     public class CustomerRatingCreate
     {
-        public int CustomerRatingId { get; set; }
+        public int CustomerId { get; set; }
         public int Timeliness { get; set; }
         public int Care { get; set; }
         public int Ease { get; set; }

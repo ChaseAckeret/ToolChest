@@ -15,7 +15,7 @@ namespace ToolChest_Service
             var entity =
                 new CustomerRating()
                 {
-                    CustomerRatingId = model.CustomerRatingId,
+                    FKCustomerID = model.CustomerId,
                     Timeliness = model.Timeliness,
                     Care = model.Care,
                     Ease = model.Ease
@@ -28,7 +28,7 @@ namespace ToolChest_Service
             }
         }
 
-        public bool UpdateCustomerRating(CustomerRatingCreate model)
+        public bool UpdateCustomerRating(CustomerRatingEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {

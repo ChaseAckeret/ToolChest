@@ -16,7 +16,7 @@ namespace ToolChest_Data
         // foreign Key
         [ForeignKey("User")]
 
-        public int CustomerUserID { get; set; }
+        public int FKCustomerID { get; set; }
 
         //navigation property
         public virtual User User { get; set; }

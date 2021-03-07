@@ -44,6 +44,7 @@ namespace ToolChest_Data
         public DbSet<CustomerRating> CustomerRatings { get; set; }
         public DbSet<OwnerRating> OwnerRatings { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -35,7 +35,7 @@ namespace ToolChest_WebAPI.Controllers
             return customerRatingService;
         }
 
-        public IHttpActionResult Put(CustomerRatingCreate rating)
+        public IHttpActionResult Put(CustomerRatingEdit rating)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
