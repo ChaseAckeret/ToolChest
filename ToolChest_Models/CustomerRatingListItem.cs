@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToolChest_Service
+namespace ToolChest_Models
 {
-    public class CustomerService
+    class CustomerRatingListItem
     {
     }
 }

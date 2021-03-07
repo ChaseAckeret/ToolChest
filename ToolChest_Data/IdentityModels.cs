@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -12,6 +14,8 @@ namespace ToolChest_Data
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -27,15 +31,21 @@ namespace ToolChest_Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        /*Change "Note" to correct term
-          public DbSet<Note> Notes { get; set; }
-        */
+        //Add DBSet for every table?
+        public DbSet<Tool> Tools { get; set; }
+        public DbSet<ToolRating> ToolRatings { get; set; }
+        public DbSet<ToolCatalogItem> ToolCatalogItems { get; set; }
+        public DbSet<CustomerRating> CustomerRatings { get; set; }
+        public DbSet<OwnerRating> OwnerRatings { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +57,10 @@ namespace ToolChest_Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+            modelBuilder
+                .Entity<Tool>().HasOptional<List<Rental>>(r => r.Rentals)
+                .WithOptionalDependent()
+                .WillCascadeOnDelete(false);
         }
     }
 
@@ -54,7 +68,7 @@ namespace ToolChest_Data
     {
         public IdentityUserLoginConfiguration()
         {
-            HasKey(iul=>iul.UserId)
+            HasKey(iul => iul.UserId);
         }
     }
 

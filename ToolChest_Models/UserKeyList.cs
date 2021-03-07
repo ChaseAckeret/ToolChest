@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToolChest_Data
+namespace ToolChest_Models
 {
-    public class Customer
+    public class UserKeyList
     {
+
+        public int UserID { get; set; }
     }
 }
