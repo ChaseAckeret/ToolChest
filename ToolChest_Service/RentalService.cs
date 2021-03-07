@@ -155,8 +155,6 @@ namespace ToolChest_Service
             }
         }
 
-
-
         public RentalListItem GetSingleRentalByID(int rentalID)
         {
             using (var ctx = new ApplicationDbContext())
@@ -192,11 +190,7 @@ namespace ToolChest_Service
                            ScheduledStartDate = entity.ScheduledStartDate,
                            ScheduledEndDate = entity.ScheduledEndDate
                        };
-
-
             }
         }
-
-
     }//end of class RentalService
 }

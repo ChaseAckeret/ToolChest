@@ -154,6 +154,14 @@
     <Compile Include="Migrations\202103061659506_nulltoolidinrentalbeforedelete.designer.cs">
       <DependentUpon>202103061659506_nulltoolidinrentalbeforedelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103071647183_addedreceiptstuff.cs" />
+    <Compile Include="Migrations\202103071647183_addedreceiptstuff.designer.cs">
+      <DependentUpon>202103071647183_addedreceiptstuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103071720391_correctedCustomerRating.cs" />
+    <Compile Include="Migrations\202103071720391_correctedCustomerRating.designer.cs">
+      <DependentUpon>202103071720391_correctedCustomerRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OwnerRating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,6 +180,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103061659506_nulltoolidinrentalbeforedelete.resx">
       <DependentUpon>202103061659506_nulltoolidinrentalbeforedelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071647183_addedreceiptstuff.resx">
+      <DependentUpon>202103071647183_addedreceiptstuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071720391_correctedCustomerRating.resx">
+      <DependentUpon>202103071720391_correctedCustomerRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
