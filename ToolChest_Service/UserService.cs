@@ -166,11 +166,11 @@ namespace ToolChest_Service
                         .Users
                         .Single(e => e.UserID == model.UserId);
 
-                entity.FName = model.FName,
-                entity.LName=model.LName,
-                entity.StreetAddress=model.StreetAddress,
-                entity.City = model.City,
-                entity.State=model.State,
+                entity.FName = model.FName;
+                entity.LName = model.LName;
+                entity.StreetAddress = model.StreetAddress;
+                entity.City = model.City;
+                entity.State = model.State;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
