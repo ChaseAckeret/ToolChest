@@ -30,14 +30,14 @@ namespace ToolChest_Service
 
         }
 
-        public bool UpdateOwnerRating(OwnerRating model)
+        public bool UpdateOwnerRating(OwnerRatingCreate model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .OwnerRatings
-                        .Single(e => e.OwnerRatingId == model.OwnerRatingId);
+                        .Single(e => e.OwnerRatingId == model.OwnerId);
 
                 entity.Timeliness = model.Timeliness;
                 entity.Price = model.Price;
