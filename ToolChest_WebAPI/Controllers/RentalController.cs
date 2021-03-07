@@ -73,6 +73,35 @@ namespace ToolChest_WebAPI.Controllers
             return Ok(rentalsbyID);
         }
 
+        //that was our get by id method
+
+        //and now a basic get with no argument
+
+
+
+        //now we need a delete by id. we need to instantiate the rentalService, then try and call the delete rental
+        //method in the service layer. if it doesnt work return the internal service error, otherwise return ok
+
+        public IHttpActionResult Delete(int rentalId)
+        {
+            //instantiate the service
+            var service = CreateRentalService();
+
+            if (!service.DeleteRental(rentalId))
+            {
+
+                return InternalServerError();
+
+            }//end of if not delete rental by id success
+            //we get out that means it works, return ok
+            return Ok();
+
+        }//end of method Delete
+
+
+
+
+
 
     }//end of class RentalController
 

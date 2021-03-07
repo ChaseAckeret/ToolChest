@@ -27,8 +27,12 @@ namespace ToolChest_Data
         public virtual User CustomerID { get; set; }
         //The above should be:         public virtual User Customer { get; set; }
 
-        //public int RecieptId { get; set; }
-        // future feature
+
+        [ForeignKey("Receipt")]
+        public int RecieptId { get; set; }
+        // now our virtual box to store the receipt
+        public virtual Receipt Receipt { get; set; }
+
 
         public DateTimeOffset ScheduledStartDate { get; set; }
         public DateTimeOffset ScheduledEndDate { get; set; }

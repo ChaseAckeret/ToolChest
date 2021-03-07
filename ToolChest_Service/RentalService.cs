@@ -114,5 +114,60 @@ namespace ToolChest_Service
             }
         }
 
+        public IEnumerable<RentalListItem> GetAllRentals()
+        {
+            List<RentalListItem> returnList = new List<RentalListItem>();
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Rentals
+                        .Where(e => e.RentalId > 0)
+                        .Select(
+                            e =>
+                                new RentalListItem
+                                {
+
+                                    RentalID = e.RentalId,
+
+                                }//end of new RentalListItem
+
+
+                        );//end of select
+                foreach (RentalListItem result in query)
+                {
+
+                    returnList.Add(GetSingleRentalByID(result.RentalID));
+
+                }//end of foreach rentalListItem in query
+
+                return returnList;
+
+            }//end of using
+
+
+
+        }//end of method GetAllRentals
+
+
+        //now to create a delete method to remove a rental from the rentals table
+
+        public bool DeleteRental(int rentalId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Rentals.Single(e => e.RentalId == rentalId);
+                ctx.Rentals.Remove(entity);
+                return ctx.SaveChanges() == 1;
+
+            }//end of using
+
+
+        }//end of method DeleteRental
+
+
+
+
     }//end of class RentalService
 }
