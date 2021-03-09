@@ -32,7 +32,11 @@ namespace ToolChest_WebAPI.Controllers
 
 
         //post a rental
-
+        /// <summary>
+        /// Post a new Rental object to the Database
+        /// </summary>
+        /// <param name="Rental">Contains the required fields for a Rental object</param>
+        /// <returns></returns>
         public IHttpActionResult Post(RentalCreate Rental)
         {
 
@@ -65,6 +69,11 @@ namespace ToolChest_WebAPI.Controllers
 
         }//end of Post method
 
+        /// <summary>
+        /// Get Rentals from Database based on the parameter UserId
+        /// </summary>
+        /// <param name="userID">The id of the User the Rental Objects are associated with</param>
+        /// <returns></returns>
         public IHttpActionResult Get(int userID)
         {
 

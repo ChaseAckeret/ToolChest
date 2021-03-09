@@ -19,6 +19,11 @@ namespace ToolChest_WebAPI.Controllers
         }
 
         //Post a Customer Rating
+        /// <summary>
+        /// Post a new Receipt to the Database
+        /// </summary>
+        /// <param name="NewReciept">Contains the required fields for a Receipt object</param>
+        /// <returns></returns>
         public IHttpActionResult Post(ReceiptCreate NewReciept)
         {
             if (!ModelState.IsValid)
@@ -40,6 +45,12 @@ namespace ToolChest_WebAPI.Controllers
         //    return customerRatingService;
         //}
 
+
+        /// <summary>
+        /// Changes an existing Receipt object in the Database
+        /// </summary>
+        /// <param name="editReciept">The new Receipt, with same ID, to replace existing Receipt in Database</param>
+        /// <returns></returns>
         public IHttpActionResult Put(ReceiptEdit editReciept)
         {
             if (!ModelState.IsValid)
@@ -52,7 +63,11 @@ namespace ToolChest_WebAPI.Controllers
 
             return Ok();
         }
-
+        /// <summary>
+        /// Deletes the Receipt specified by the parameter id
+        /// </summary>
+        /// <param name="id">The id of the Receipt to delete from the Database</param>
+        /// <returns></returns>
         public IHttpActionResult Delete(int id)
         {
             var service = CreateReceiptService();
