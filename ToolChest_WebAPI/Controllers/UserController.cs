@@ -20,6 +20,11 @@ namespace ToolChest_WebAPI.Controllers
             return userService;
         }
 
+        /// <summary>
+        /// Get list of users, either Owners or Customers
+        /// </summary>
+        /// <param name="which">String to indicate Owners or Customers</param>
+        /// <returns></returns>
         public IHttpActionResult Get(string which)
         {
             UserService userService = CreateUserService();
@@ -40,7 +45,11 @@ namespace ToolChest_WebAPI.Controllers
 
         }
 
-
+        /// <summary>
+        /// Post new User to the Database
+        /// </summary>
+        /// <param name="User">Contains the required fields for a new User object</param>
+        /// <returns></returns>
         public IHttpActionResult Post(UserCreate User)
         {
             if (!ModelState.IsValid)
@@ -53,7 +62,11 @@ namespace ToolChest_WebAPI.Controllers
 
             return Ok();
         }
-
+        /// <summary>
+        /// Change an existing User object in the Database
+        /// </summary>
+        /// <param name="user">The User object, with matching id, to be changed in the Database</param>
+        /// <returns></returns>
         public IHttpActionResult Put(UserEdit user)
         {
             if (!ModelState.IsValid)
@@ -67,7 +80,11 @@ namespace ToolChest_WebAPI.Controllers
             return Ok();
         }
 
-     
+        /// <summary>
+        /// Delete User
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IHttpActionResult Delete(int id)
         {
             var service = CreateUserService();

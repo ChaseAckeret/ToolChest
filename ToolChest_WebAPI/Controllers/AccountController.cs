@@ -320,6 +320,11 @@ namespace ToolChest_WebAPI.Controllers
         }
 
         // POST api/Account/Register
+        /// <summary>
+        /// Post a new User to the Database
+        /// </summary>
+        /// <param name="model">Contains the required fields for a new User</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)

@@ -21,7 +21,11 @@ namespace ToolChest_WebAPI.Controllers
         }
 
         //Post a Tool
-
+        /// <summary>
+        /// Post a new Tool object to the Database
+        /// </summary>
+        /// <param name="Tool">Contains the required fields for a new Tool object</param>
+        /// <returns></returns>
         public IHttpActionResult Post(ToolCreate Tool)
         {
             if (!ModelState.IsValid)
@@ -35,7 +39,11 @@ namespace ToolChest_WebAPI.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Get a Tool from the Database specified by the parameter id
+        /// </summary>
+        /// <param name="id">The id of the Tool to return from the Database</param>
+        /// <returns></returns>
         public IHttpActionResult Get(int id)
         {
 
@@ -43,7 +51,12 @@ namespace ToolChest_WebAPI.Controllers
             var tool = toolService.GetFullToolDetailByID(id);
             return Ok(tool);
         }
-
+        /// <summary>
+        /// Get Tools that are of a particular type and located in a particular zip
+        /// </summary>
+        /// <param name="type">The type of Tool to be returned from the Database</param>
+        /// <param name="zip">The zip code for the tools we want returned</param>
+        /// <returns></returns>
         public IHttpActionResult Get(int type, int zip)
         {
 
@@ -51,7 +64,10 @@ namespace ToolChest_WebAPI.Controllers
             var tool = toolService.GetToolsByTypeAndZip(type, zip);
             return Ok(tool);
         }
-
+        /// <summary>
+        /// Get all Tool objects stored in the Database
+        /// </summary>
+        /// <returns></returns>
         public IHttpActionResult GetAllTools()
         {
 
@@ -60,6 +76,12 @@ namespace ToolChest_WebAPI.Controllers
             return Ok(tool);
         }
 
+        /// <summary>
+        /// Changes an existing Tool object in the Database
+        /// </summary>
+        /// <param name="toolId">The id of the Tool to change</param>
+        /// <param name="toolEdit">The new Tool, with id, to replace existing Tool</param>
+        /// <returns></returns>
         public IHttpActionResult Put(int toolId, ToolEdit toolEdit)
         {
             if (!ModelState.IsValid)
@@ -72,7 +94,11 @@ namespace ToolChest_WebAPI.Controllers
 
             return Ok();
         }
-
+        /// <summary>
+        /// Delete Tool object specified by parameter by id
+        /// </summary>
+        /// <param name="id">Id of the Tool to be deleted from the Database</param>
+        /// <returns></returns>
         public IHttpActionResult Delete(int id)
         {
             var service = CreateToolService();
