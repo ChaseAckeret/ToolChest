@@ -14,6 +14,11 @@ namespace ToolChest_WebAPI.Controllers
     public class ToolRatingController : ApiController
     {
         // Post a Tool Rating
+        /// <summary>
+        /// Post a new ToolRating to the Database
+        /// </summary>
+        /// <param name="ToolRating">Contains the required fields for a ToolRating object</param>
+        /// <returns></returns>
         public IHttpActionResult Post(ToolRatingCreate ToolRating)
         {
             if (!ModelState.IsValid)
@@ -36,7 +41,11 @@ namespace ToolChest_WebAPI.Controllers
             return ToolService;
 
         }
-
+        /// <summary>
+        /// Deletes the ToolRating specified by the parameter id
+        /// </summary>
+        /// <param name="id">Id of the ToolRating to delete from the Database</param>
+        /// <returns></returns>
         public IHttpActionResult Delete(int id)
         {
             var service = CreateToolRatingService();
